@@ -11,6 +11,7 @@ import TabsComponent from 'ui-library/components/Tabs';
 import AvatarComponent from 'ui-library/components/Avatar';
 import Switch from 'ui-library/components/Switch';
 import Table from 'ui-library/components/Table';
+import JsonForm from 'ui-library/components/JsonForm';
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -252,6 +253,10 @@ const App: React.FC = () => {
       </div>
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
       <Switch label="On" checked={flag} onChange={toggleFlag} switchBgColor="" disabled={false} value={flag} isLeftLabel={true} leftlabel="Off" />
+    <div className="App">
+      <h1>Json Form example</h1>
+      <JsonForm />
+    </div>
     </div>
   );
 };

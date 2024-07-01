@@ -11,7 +11,7 @@ interface ITextFieldProps extends BaseTextFieldProps {
   sx?: SxProps<Theme>;
 }
 
-const CustomTextField: React.FC<ITextFieldProps> = ({ disabled = true, errormsg, label, onChange, sx, ...props }) => {
+const CustomTextField: React.FC<ITextFieldProps> = ({ disabled = false, errormsg, label, onChange, sx, ...props }) => {
   const defaultSx: SxProps<Theme> = {
     '& .MuiInputBase-root': {
       backgroundColor: disabled ? '#f5f5f5' : 'inherit',
