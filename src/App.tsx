@@ -11,6 +11,7 @@ import TabsComponent from 'ui-library/components/Tabs';
 import AvatarComponent from 'ui-library/components/Avatar';
 import Switch from 'ui-library/components/Switch';
 import Table from 'ui-library/components/Table';
+import StepperComponent from 'ui-library/components/Stepper';
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -164,6 +165,18 @@ const App: React.FC = () => {
     window.location.reload();
   };
 
+  const steps = [
+    'Select master blaster campaign settings',
+    'Create an ad group',
+    'Create an ad',
+  ];
+
+  const [activeStep, setActiveStep] = useState(1);
+
+  const handleStep = (step: number) => {
+    setActiveStep(step);
+  };
+
   return (
     <div>
       <div className="App">
@@ -251,7 +264,11 @@ const App: React.FC = () => {
         <ErrorPage errorMessage="Failed to load data." onRefresh={handleRefresh} />
       </div>
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
-      <Switch label="On" checked={flag} onChange={toggleFlag} switchBgColor="" disabled={false} value={flag} isLeftLabel={true} leftlabel="Off" />
+      <Switch label="On" checked={flag} onChange={toggleFlag}  disabled={false} value={flag} isLeftLabel={true} leftlabel="Off" />
+      <div className="App">
+        <h1>Stepper example</h1>
+        <StepperComponent activeStep={activeStep} steps={steps} handleStep={handleStep} />
+      </div>
     </div>
   );
 };
