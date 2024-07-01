@@ -1,4 +1,4 @@
-import { Button, OtpInput, TextField } from 'pangea_ui_library';
+import { Button, OtpInput, TextField } from 'ui-library';
 import React, { useState } from 'react';
 
 interface Field {

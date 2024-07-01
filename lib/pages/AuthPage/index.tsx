@@ -1,4 +1,4 @@
-import { Button, TextField } from 'pangea_ui_library';
+import { Button, TextField } from 'ui-library';
 import React, { useState } from 'react';
 
 export interface IAuthPageProps {
