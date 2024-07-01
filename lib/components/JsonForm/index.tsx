@@ -10,7 +10,7 @@ const jsonData = {
         type: 'email',
         required: true,
         placeholder: 'Enter your email',
-        element_type: 'textField'
+        elementType: 'textField'
       },
       {
         label: 'Password',
@@ -18,14 +18,14 @@ const jsonData = {
         required: true,
         error: false,
         placeholder: 'Enter your password',
-        element_type: 'password'
+        elementType: 'password'
       },
       {
         label: 'Dropdown',
         type: 'dropdown',
         required: true,
         value: 'Option 1',
-        element_type: 'dropdown',
+        elementType: 'dropdown',
         options: [
           {
             label: 'Option 1',
@@ -45,7 +45,7 @@ const jsonData = {
         label: 'TextArea',
         type: 'textArea',
         required: true,
-        element_type: 'textArea',
+        elementType: 'textArea',
       }
     ]
   }
@@ -60,7 +60,6 @@ const JsonForm = () => {
             type={data.type}
             required={data.required}
             placeholder={data.placeholder}
-            onChange={(e) => console.log(e.target.value)}
           />
         );
       case 'password':
@@ -85,7 +84,7 @@ const JsonForm = () => {
     <div>
       <Typography variant="h5" fontWeight={500}>{jsonData.form.title}</Typography>
       {jsonData.form.fields.map((field) => {
-        return renderElements(field.element_type, field);
+        return renderElements(field.elementType, field);
       })}
     </div>
   );
