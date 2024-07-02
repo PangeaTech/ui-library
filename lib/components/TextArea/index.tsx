@@ -6,12 +6,13 @@ import { SxProps, Theme } from '@mui/system';
 interface ITextAreaProps extends BaseTextFieldProps {
   disabled?: boolean;
   errormsg?: string;
+  helperText?: string;
   label?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   sx?: SxProps<Theme>;
 }
 
-const TextArea: React.FC<ITextAreaProps> = ({ disabled = true, errormsg, label, onChange, sx, ...props }) => {
+const TextArea: React.FC<ITextAreaProps> = ({ disabled = false, errormsg, helperText, label, onChange, sx, ...props }) => {
   const defaultSx: SxProps<Theme> = {
     '& .MuiInputBase-root': {
       backgroundColor: disabled ? '#f5f5f5' : 'inherit',
@@ -38,7 +39,7 @@ const TextArea: React.FC<ITextAreaProps> = ({ disabled = true, errormsg, label, 
           InputLabelProps={{ shrink: true }}
         />
       </Box>
-      {errormsg && <FormHelperText error>{errormsg}</FormHelperText>}
+      {helperText && <FormHelperText>{helperText}</FormHelperText>}
     </FormControl>
   );
 };

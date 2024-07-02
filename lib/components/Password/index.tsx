@@ -7,7 +7,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Box, FormControl, FormHelperText, InputLabel } from '@mui/material';
 import { SxProps, Theme } from '@mui/system';
 
-interface IPasswordInputProps extends Omit<TextFieldProps, 'onChange'> {
+export interface IPasswordInputProps extends Omit<TextFieldProps, 'onChange'> {
   onChange: (value: string) => void;
   error?: boolean;
   helperText?: string;
