@@ -38,7 +38,6 @@ const TextArea: React.FC<ITextAreaProps> = ({ disabled = false, errormsg, label,
           InputLabelProps={{ shrink: true }}
         />
       </Box>
-      {errormsg && <FormHelperText error>{errormsg}</FormHelperText>}
     </FormControl>
   );
 };

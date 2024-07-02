@@ -7,6 +7,7 @@ interface IDropdownProps extends Partial<AutocompleteProps<any, any, any, any>> 
   options: { value: string | number; label: string }[];
   label?: string;
   isSelect?: boolean;
+  required?: boolean;
 }
 
 const Dropdown: React.FC<IDropdownProps> = ({ disabled = false, errormsg, options, label, isSelect = false, onChange, ...props }) => {
@@ -17,7 +18,7 @@ const Dropdown: React.FC<IDropdownProps> = ({ disabled = false, errormsg, option
         <Autocomplete
           {...props}
           disabled={!!disabled}
-          options={options.map((option) => option.label)}
+          options={options}
           onChange={onChange}
           renderInput={(params) => (
             <TextField

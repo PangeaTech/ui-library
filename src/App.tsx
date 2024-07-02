@@ -16,7 +16,7 @@ import JsonForm from 'ui-library/components/JsonForm';
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
   const [textFieldError, setTextFieldError] = useState('');
-  const [dropdownValue, setDropdownValue] = useState<string | null>(null);
+  const [dropdownValue, setDropdownValue] = useState<{ label: string; value: string } | null>(null);
   const [dropdownError, setDropdownError] = useState('');
   const [textAreaValue, setTextAreaValue] = useState('');
   const [textAreaError, setTextAreaError] = useState('');
@@ -47,7 +47,8 @@ const App: React.FC = () => {
     }
   };
 
-  const handleDropdownChange = (event: any, newValue: string | null) => {
+  const handleDropdownChange = (_event: any, newValue: { label: string; value: string } | null) => {
+    console.log(newValue);
     setDropdownValue(newValue);
     if (newValue === null) {
       setDropdownError('This field is required');
@@ -178,7 +179,7 @@ const App: React.FC = () => {
           value={dropdownValue}
           onChange={handleDropdownChange}
           errormsg={dropdownError}
-          disabled={flag}
+          disabled={false}
           options={dropdownOptions}
           isSelect={true} // Set to true for select-like behavior
         />
