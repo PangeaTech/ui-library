@@ -12,6 +12,7 @@ import AvatarComponent from 'ui-library/components/Avatar';
 import Switch from 'ui-library/components/Switch';
 import Table from 'ui-library/components/Table';
 import JsonForm from 'ui-library/components/JsonForm';
+import jsonData from './data/sampleForm.json'
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -249,14 +250,14 @@ const App: React.FC = () => {
         <SsoAuthPage {...ssoAuthPageProps} />
       </div>
       <div className="App">
-        <h1>Erro page example</h1>
+        <h1>Error page example</h1>
         <ErrorPage errorMessage="Failed to load data." onRefresh={handleRefresh} />
       </div>
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
       <Switch label="On" checked={flag} onChange={toggleFlag} switchBgColor="" disabled={false} value={flag} isLeftLabel={true} leftlabel="Off" />
     <div className="App">
       <h1>Json Form example</h1>
-      <JsonForm />
+      <JsonForm onSubmit={(data) => console.log("submitted",data)} jsonData={jsonData}/>
     </div>
     </div>
   );
