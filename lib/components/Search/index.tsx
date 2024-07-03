@@ -8,7 +8,7 @@ interface ISearchBarProps extends Omit<TextFieldProps, 'onChange'> {
   disabled?: boolean;
 }
 
-const SearchBar: React.FC<ISearchBarProps> = ({ onChange, disabled, ...props }) => {
+const SearchBar: React.FC<ISearchBarProps> = ({ onChange, disabled = false, ...props }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
@@ -16,7 +16,7 @@ const SearchBar: React.FC<ISearchBarProps> = ({ onChange, disabled, ...props }) 
   return (
     <TextField
       placeholder="Search..."
-      disabled={!disabled}
+      disabled={disabled}
       onChange={handleChange}
       InputProps={{
         startAdornment: (

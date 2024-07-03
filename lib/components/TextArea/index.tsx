@@ -1,17 +1,18 @@
 import React from 'react';
 import TextField, { BaseTextFieldProps } from '@mui/material/TextField';
-import { Box, FormControl, FormHelperText, InputLabel } from '@mui/material';
+import { Box, FormControl, InputLabel } from '@mui/material';
 import { SxProps, Theme } from '@mui/system';
 
 interface ITextAreaProps extends BaseTextFieldProps {
   disabled?: boolean;
-  errormsg?: string;
+  error?: boolean;
+  helperText?: string;
   label?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   sx?: SxProps<Theme>;
 }
 
-const TextArea: React.FC<ITextAreaProps> = ({ disabled = true, errormsg, label, onChange, sx, ...props }) => {
+const TextArea: React.FC<ITextAreaProps> = ({ disabled = false, error = false, helperText, label, onChange, sx, ...props }) => {
   const defaultSx: SxProps<Theme> = {
     '& .MuiInputBase-root': {
       backgroundColor: disabled ? '#f5f5f5' : 'inherit',
@@ -28,8 +29,8 @@ const TextArea: React.FC<ITextAreaProps> = ({ disabled = true, errormsg, label, 
       <Box sx={{ marginTop: label ? '1.5em' : 0 }}>
         <TextField
           {...props}
-          error={Boolean(errormsg)}
-          helperText={errormsg}
+          error={error}
+          helperText={helperText}
           onChange={onChange}
           disabled={disabled}
           multiline
@@ -38,7 +39,6 @@ const TextArea: React.FC<ITextAreaProps> = ({ disabled = true, errormsg, label, 
           InputLabelProps={{ shrink: true }}
         />
       </Box>
-      {errormsg && <FormHelperText error>{errormsg}</FormHelperText>}
     </FormControl>
   );
 };

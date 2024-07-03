@@ -5,7 +5,7 @@ import FormGroup from '@mui/material/FormGroup';
 
 export interface ICheckboxProps extends CheckboxProps {
   disabled?: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   checked?: boolean;
   required?: boolean;
   label: string;

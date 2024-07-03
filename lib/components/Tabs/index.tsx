@@ -27,6 +27,7 @@ const TabsComponent: React.FC<ITabsComponentProps> = ({ tabs, ...tabsProps }) =>
   const [tabIndex, setTabIndex] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newIndex: number) => {
+    console.log(event);
     setTabIndex(newIndex);
   };
 
