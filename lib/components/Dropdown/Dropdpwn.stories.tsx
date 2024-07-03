@@ -47,21 +47,8 @@ export const WithError: Story = {
     ],
     value: '',
     onChange: (e) => console.log(e.target),
-    errormsg: 'Something went wrong!'
-  }
-};
-
-export const WithPlaceholder: Story = {
-  args: {
-    label: 'Dropdown with Placeholder',
-    options: [
-      { value: '1', label: 'Option 1' },
-      { value: '2', label: 'Option 2' },
-      { value: '3', label: 'Option 3' }
-    ],
-    value: '',
-    onChange: (e) => console.log(e.target)
-    // placeholder: 'Select an option...',
+    error: true,
+    helperText: 'This field is required'
   }
 };
 

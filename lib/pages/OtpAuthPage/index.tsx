@@ -67,7 +67,8 @@ const OtpAuthPage: React.FC<IOtpAuthPageProps> = ({ fields, logoUrl, onSendOtp, 
               type={field.type}
               value={field.label === 'Email' ? email : ''}
               onChange={(e) => (field.label === 'Email' ? setEmail(e.target.value) : null)}
-              errormsg={field.label === 'Email' && email === '' ? 'Email is required' : ''}
+              error={field.label === 'Email' && email === '' ? true : false}
+              helperText="Email is required"
               disabled={flag}
             />
           ))}

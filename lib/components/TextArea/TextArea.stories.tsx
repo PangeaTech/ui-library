@@ -7,7 +7,7 @@ const meta = {
   component: TextArea,
   argTypes: {
     disabled: { control: 'boolean' },
-    errormsg: { control: 'text' },
+    error: { control: 'boolean' },
     label: { control: 'text' },
     onChange: { action: 'changed' }
   }
@@ -33,7 +33,8 @@ export const Disabled: Story = {
 export const WithError: Story = {
   args: {
     label: 'Text area with error',
-    errormsg: 'This field is required'
+    error: true,
+    helperText: 'This field is required'
   }
 };
 
