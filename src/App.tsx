@@ -12,7 +12,7 @@ import AvatarComponent from 'ui-library/components/Avatar';
 import Switch from 'ui-library/components/Switch';
 import Table from 'ui-library/components/Table';
 import JsonForm from 'ui-library/components/JsonForm';
-import jsonData from './data/sampleForm.json'
+import jsonData from './data/sampleForm.json';
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -255,10 +255,10 @@ const App: React.FC = () => {
       </div>
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
       <Switch label="On" checked={flag} onChange={toggleFlag} switchBgColor="" disabled={false} value={flag} isLeftLabel={true} leftlabel="Off" />
-    <div className="App">
-      <h1>Json Form example</h1>
-      <JsonForm onSubmit={(data) => console.log("submitted",data)} jsonData={jsonData}/>
-    </div>
+      <div className="App w-80 px-12 mx-auto border-4 border-red-700 bg-slate-100">
+        <h1 className="font-sans text-3xl text-center">Json Form example</h1>
+        <JsonForm onSubmit={(data) => console.log('submitted', data)} jsonData={jsonData} />
+      </div>
     </div>
   );
 };

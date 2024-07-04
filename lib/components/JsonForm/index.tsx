@@ -26,6 +26,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData }) => {
                 {...field}
                 error={invalid}
                 helperText={invalid ? error?.message : ''}
+                fullWidth
               />
             )}
           />
@@ -45,6 +46,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData }) => {
                 error={invalid}
                 helperText={invalid ? error?.message : ''}
                 {...field}
+                fullWidth
               />
             )}
           />
@@ -75,7 +77,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData }) => {
             control={control}
             rules={data?.rules}
             render={({ field, fieldState: { invalid, error } }) => (
-              <TextArea label={data.label} {...field} error={invalid} helperText={invalid ? error?.message : ''} />
+              <TextArea label={data.label} {...field} error={invalid} helperText={invalid ? error?.message : ''} fullWidth />
             )}
           />
         );
@@ -89,7 +91,9 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData }) => {
       {jsonData.fields.map((field: any) => {
         return <div>{renderElements(field.componentType, field)}</div>;
       })}
-      <Button type="submit">Submit</Button>
+      <Button type="submit" className="w-full my-2">
+        Submit
+      </Button>
     </Box>
   );
 };
