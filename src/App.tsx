@@ -167,22 +167,6 @@ const App: React.FC = () => {
   return (
     <div>
       <div className="App">
-        <h1>Textfield example</h1>
-        <TextField label="Example Label" value={textFieldValue} onChange={handleTextFieldChange} errormsg={textFieldError} disabled={true} />
-      </div>
-      <div className="App">
-        <h1>Dropdown example</h1>
-        <Dropdown
-          label="Example Dropdown"
-          value={dropdownValue}
-          onChange={handleDropdownChange}
-          errormsg={dropdownError}
-          disabled={flag}
-          options={dropdownOptions}
-          isSelect={true} // Set to true for select-like behavior
-        />
-      </div>
-      <div className="App">
         <h1>Textarea example</h1>
         <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} error={true} disabled={true} />
       </div>
