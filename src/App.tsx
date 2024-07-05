@@ -11,11 +11,13 @@ import TabsComponent from 'ui-library/components/Tabs';
 import AvatarComponent from 'ui-library/components/Avatar';
 import Switch from 'ui-library/components/Switch';
 import Table from 'ui-library/components/Table';
+import JsonForm from 'ui-library/components/JsonForm';
+import jsonData from './data/sampleForm.json';
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
   const [textFieldError, setTextFieldError] = useState('');
-  const [dropdownValue, setDropdownValue] = useState<string | null>(null);
+  const [dropdownValue, setDropdownValue] = useState<{ label: string; value: string } | null>(null);
   const [dropdownError, setDropdownError] = useState('');
   const [textAreaValue, setTextAreaValue] = useState('');
   const [textAreaError, setTextAreaError] = useState('');
@@ -46,7 +48,8 @@ const App: React.FC = () => {
     }
   };
 
-  const handleDropdownChange = (event: any, newValue: string | null) => {
+  const handleDropdownChange = (_event: any, newValue: { label: string; value: string } | null) => {
+    console.log(newValue);
     setDropdownValue(newValue);
     if (newValue === null) {
       setDropdownError('This field is required');
@@ -177,7 +180,7 @@ const App: React.FC = () => {
           value={dropdownValue}
           onChange={handleDropdownChange}
           errormsg={dropdownError}
-          disabled={flag}
+          disabled={false}
           options={dropdownOptions}
           isSelect={true} // Set to true for select-like behavior
         />
@@ -247,11 +250,15 @@ const App: React.FC = () => {
         <SsoAuthPage {...ssoAuthPageProps} />
       </div>
       <div className="App">
-        <h1>Erro page example</h1>
+        <h1>Error page example</h1>
         <ErrorPage errorMessage="Failed to load data." onRefresh={handleRefresh} />
       </div>
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
       <Switch label="On" checked={flag} onChange={toggleFlag} switchBgColor="" disabled={false} value={flag} isLeftLabel={true} leftlabel="Off" />
+      <div className="App w-80 px-12 mx-auto border-4 border-red-700 bg-slate-100">
+        <h1 className="font-sans text-3xl text-center">Json Form example</h1>
+        <JsonForm onSubmit={(data) => console.log('submitted', data)} jsonData={jsonData} />
+      </div>
     </div>
   );
 };
