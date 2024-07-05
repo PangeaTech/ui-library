@@ -13,6 +13,7 @@ import Switch from 'ui-library/components/Switch';
 import Table from 'ui-library/components/Table';
 import JsonForm from 'ui-library/components/JsonForm';
 import jsonData from './data/sampleForm.json';
+import { UploadButton } from 'ui-library';
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -171,7 +172,14 @@ const App: React.FC = () => {
     <div>
       <div className="App">
         <h1>Textfield example</h1>
-        <TextField label="Example Label" value={textFieldValue} onChange={handleTextFieldChange} errormsg={textFieldError} disabled={true} />
+        <TextField
+          label="Example Label"
+          value={textFieldValue}
+          onChange={handleTextFieldChange}
+          error={Boolean(textFieldError)}
+          helperText={textFieldError}
+          disabled={true}
+        />
       </div>
       <div className="App">
         <h1>Dropdown example</h1>
@@ -179,7 +187,8 @@ const App: React.FC = () => {
           label="Example Dropdown"
           value={dropdownValue}
           onChange={handleDropdownChange}
-          errormsg={dropdownError}
+          error={Boolean(dropdownError)}
+          helperText={dropdownError}
           disabled={false}
           options={dropdownOptions}
           isSelect={true} // Set to true for select-like behavior
@@ -259,6 +268,7 @@ const App: React.FC = () => {
         <h1 className="font-sans text-3xl text-center">Json Form example</h1>
         <JsonForm onSubmit={(data) => console.log('submitted', data)} jsonData={jsonData} />
       </div>
+      <UploadButton type="file" label="Upload File" onUpload={(files) => console.log(files)} />
     </div>
   );
 };
