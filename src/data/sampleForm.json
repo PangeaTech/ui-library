@@ -1,0 +1,48 @@
+{
+  "fields": [
+    {
+      "label": "Email",
+      "name": "email",
+      "type": "email",
+      "required": true,
+      "placeholder": "Enter your email",
+      "componentType": "textField",
+      "rules": { "required": "Please enter your email", "pattern": { "value": {}, "message": "Invalid email address" } }
+    },
+    {
+      "label": "Password",
+      "name": "password",
+      "type": "password",
+      "required": true,
+      "error": false,
+      "placeholder": "Enter your password",
+      "componentType": "password",
+      "rules": { "required": "Please enter your password", "minLength": { "value": 8, "message": "Password must be at least 8 characters" } }
+    },
+    {
+      "label": "Dropdown",
+      "type": "dropdown",
+      "name": "ageOptions",
+      "required": true,
+      "value": "Option 1",
+      "componentType": "dropdown",
+      "options": [
+        { "label": "young", "value": "less than 18" },
+        { "label": "Adult", "value": "Adult 18 - 60" },
+        { "label": "Old", "value": "Older than 60" }
+      ],
+      "rules": { "required": "Please select your age" }
+    },
+    {
+      "label": "TextArea",
+      "name": "description",
+      "type": "textArea",
+      "componentType": "textArea",
+      "rules": {
+        "required": "Please enter your description",
+        "minLength": { "value": 10, "message": "Description must be at least 10 characters" },
+        "maxLength": { "value": 100, "message": "Description must be less than 100 characters" }
+      }
+    }
+  ]
+}
