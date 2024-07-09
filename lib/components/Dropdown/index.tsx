@@ -1,14 +1,22 @@
 import React from 'react';
-import { Autocomplete, TextField, AutocompleteProps, InputLabel, Box, FormControl } from '@mui/material';
+import { Autocomplete, AutocompleteProps } from '@mui/material';
+import { Wrapper, LabelWrapper, StyledInputLabel, StyledHelperText, StyledTextField } from '../TextField/index';
+
+interface OptionType {
+  value: string | number;
+  label: string;
+}
 
 interface IDropdownProps extends Partial<AutocompleteProps<any, any, any, any>> {
   disabled?: boolean;
   error?: boolean;
   helperText?: string;
-  options: { value: string | number; label: string }[];
+  options: OptionType[];
   label?: string;
   isSelect?: boolean;
   required?: boolean;
+  value?: string | number;
+  onChange?: (event: React.SyntheticEvent, value: OptionType | null) => void;
 }
 
 const Dropdown: React.FC<IDropdownProps> = ({
@@ -22,31 +30,32 @@ const Dropdown: React.FC<IDropdownProps> = ({
   ...props
 }) => {
   return (
-    <FormControl fullWidth margin="normal">
-      {label && <InputLabel shrink>{label}</InputLabel>}
-      <Box sx={{ marginTop: label ? '1.5em' : 0 }}>
-        <Autocomplete
-          {...props}
-          disabled={disabled}
-          options={options}
-          onChange={onChange}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              error={error}
-              helperText={helperText}
-              sx={{
-                backgroundColor: disabled ? 'rgba(0, 0, 0, 0.1)' : 'transparent',
-                '& .MuiInputBase-root.Mui-disabled': {
-                  backgroundColor: 'rgba(0, 0, 0, 0.1)'
-                }
-              }}
-            />
-          )}
-          disableClearable={isSelect}
-        />
-      </Box>
-    </FormControl>
+    <Wrapper>
+      {label && (
+        <LabelWrapper>
+          <StyledInputLabel shrink>{label}</StyledInputLabel>
+        </LabelWrapper>
+      )}
+      <Autocomplete
+        {...props}
+        disabled={disabled}
+        options={options}
+        onChange={onChange}
+        disableClearable={isSelect}
+        renderInput={(params) => (
+          <StyledTextField
+            {...params}
+            error={error}
+            inputProps={{
+              ...params.InputProps,
+              startAdornment: params.InputProps?.startAdornment
+            }}
+            placeholder="Select"
+          />
+        )}
+      />
+      {helperText && <StyledHelperText>{helperText}</StyledHelperText>}
+    </Wrapper>
   );
 };
 

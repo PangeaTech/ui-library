@@ -22,8 +22,7 @@ type Story = StoryObj<typeof TextField>;
 
 export const Default: Story = {
   args: {
-    label: 'Label',
-    className: 'bg-red-200'
+    label: 'Label'
   }
 };
 
@@ -71,13 +70,13 @@ export const WithPlaceholder: Story = {
   }
 };
 
-export const Multiline: Story = {
-  args: {
-    label: 'Multiline TextField',
-    multiline: true,
-    rows: 4
-  }
-};
+// export const Multiline: Story = {
+//   args: {
+//     label: 'Multiline TextField',
+//     multiline: true,
+//     rows: 4
+//   }
+// };
 
 export const WithStartIcon: Story = {
   args: {

@@ -18,8 +18,8 @@ export const Default: Story = {
       { value: '2', label: 'Option 2' },
       { value: '3', label: 'Option 3' }
     ],
-    value: '',
-    onChange: (e) => console.log(e.target)
+    value: '2',
+    onChange: (e, value) => console.log(value)
   }
 };
 
@@ -60,7 +60,7 @@ export const WithPreselectedValue: Story = {
       { value: '2', label: 'Option 2' },
       { value: '3', label: 'Option 3' }
     ],
-    value: { value: '2', label: 'Option 2' },
+    value: '2',
     onChange: (e) => console.log(e.target)
   }
 };
@@ -73,7 +73,7 @@ export const MultipleSelection: Story = {
       { value: '2', label: 'Option 2' },
       { value: '3', label: 'Option 3' }
     ],
-    value: [],
+    value: '',
     onChange: (e) => console.log(e.target),
     multiple: true
   }

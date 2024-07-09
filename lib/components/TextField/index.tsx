@@ -10,10 +10,10 @@ interface ITextFieldProps extends BaseTextFieldProps {
   label?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
-  startIcon?: React.ReactNode; // Define startIcon as React.ReactNode
+  startIcon?: React.ReactNode;
 }
 
-const Wrapper = styled('div')({
+export const Wrapper = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
@@ -23,7 +23,7 @@ const Wrapper = styled('div')({
   maxWidth: '326px'
 });
 
-const LabelWrapper = styled('div')({
+export const LabelWrapper = styled('div')({
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
@@ -34,7 +34,7 @@ const LabelWrapper = styled('div')({
   height: '20px'
 });
 
-const StyledInputLabel = styled(InputLabel)({
+export const StyledInputLabel = styled(InputLabel)({
   width: '100%',
   maxWidth: '248px',
   height: '28px',
@@ -46,7 +46,7 @@ const StyledInputLabel = styled(InputLabel)({
   color: '#262626'
 });
 
-const StyledTextField = styled((props: ITextFieldProps) => <MuiTextField {...props} />)(({ disabled, readOnly, error }) => ({
+export const StyledTextField = styled((props: ITextFieldProps) => <MuiTextField {...props} />)(({ disabled, readOnly, error }) => ({
   '& .MuiInputBase-root': {
     display: 'flex',
     flexDirection: 'row',
@@ -63,7 +63,6 @@ const StyledTextField = styled((props: ITextFieldProps) => <MuiTextField {...pro
       fontStyle: 'normal',
       fontWeight: 400,
       fontSize: '14px',
-      display: 'flex',
       color: disabled ? '#DAD7D6' : '#262626'
     },
     '& input': {
@@ -75,7 +74,7 @@ const StyledTextField = styled((props: ITextFieldProps) => <MuiTextField {...pro
   }
 }));
 
-const StyledHelperText = styled(FormHelperText)({
+export const StyledHelperText = styled(FormHelperText)({
   width: '100%',
   maxWidth: '268px',
   height: '12px',
