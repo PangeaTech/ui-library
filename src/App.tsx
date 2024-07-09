@@ -26,7 +26,7 @@ const App: React.FC = () => {
   const [passwordError, setPasswordError] = useState('');
   const [otp, setOtp] = useState('');
   const [otpError, setOtpError] = useState(false);
-  const [flag, setFlag] = useState(true);
+  const [flag, setFlag] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string>('option1');
 
   const options: RadioOption[] = [
@@ -169,6 +169,16 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-red-50">
+      <div className="App">
+        <TextField
+          label="Example TextField"
+          value={textFieldValue}
+          onChange={handleTextFieldChange}
+          error={!!textFieldError}
+          helperText={textFieldError ? 'This field is required' : ''}
+          variant="outlined"
+        />
+      </div>
       <div className="App">
         <h1>Textarea example</h1>
         <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} error={true} disabled={true} />

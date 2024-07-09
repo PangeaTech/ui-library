@@ -25,8 +25,8 @@ const TextArea: React.FC<ITextAreaProps> = ({ disabled = false, error = false, h
 
   return (
     <FormControl fullWidth margin="normal">
-      {label && <InputLabel shrink>{label}</InputLabel>}
-      <Box sx={{ marginTop: label ? '1.5em' : 0 }}>
+      {label && <span className="mb-1 text-sm">{label}</span>}
+      <Box>
         <TextField
           {...props}
           error={error}
@@ -36,7 +36,6 @@ const TextArea: React.FC<ITextAreaProps> = ({ disabled = false, error = false, h
           multiline
           rows={4}
           sx={{ ...defaultSx, ...sx }}
-          InputLabelProps={{ shrink: true }}
         />
       </Box>
     </FormControl>

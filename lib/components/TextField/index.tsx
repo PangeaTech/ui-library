@@ -31,7 +31,7 @@ export const LabelWrapper = styled('div')({
   gap: '4px',
   width: '100%',
   maxWidth: '326px',
-  height: '20px'
+  height: '12px'
 });
 
 export const StyledInputLabel = styled(InputLabel)({
@@ -98,7 +98,7 @@ const ErrorIndicator = styled('div')({
   padding: '0px',
   gap: '6px',
   width: '100%',
-  maxWidth: '268px',
+  maxWidth: '230px',
   height: '3px'
 });
 
@@ -122,18 +122,19 @@ const TextField: React.FC<ITextFieldProps> = ({
 }) => {
   return (
     <Wrapper>
-      {label && (
+      {/* {label && (
         <LabelWrapper>
-          <StyledInputLabel shrink>{label}</StyledInputLabel>
+          <StyledInputLabel>{label}</StyledInputLabel>
         </LabelWrapper>
-      )}
+      )} */}
+      {label && <span className="font-base text-sm">{label}</span>}
       <StyledTextField
         {...props}
         error={error}
         onChange={onChange}
         disabled={disabled}
         readOnly={readOnly}
-        InputLabelProps={{ shrink: true }}
+        // InputLabelProps={{ shrink: true }}
         inputProps={{
           startAdornment: startIcon ? <InputAdornment position="start">{startIcon}</InputAdornment> : null
         }}
