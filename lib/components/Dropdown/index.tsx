@@ -1,3 +1,5 @@
+// src/components/Dropdown.tsx
+
 import React from 'react';
 import { Autocomplete, AutocompleteProps } from '@mui/material';
 import { Wrapper, LabelWrapper, StyledInputLabel, StyledHelperText, StyledTextField } from '../TextField/index';
@@ -7,7 +9,7 @@ interface OptionType {
   label: string;
 }
 
-interface IDropdownProps extends Partial<AutocompleteProps<any, any, any, any>> {
+interface IDropdownProps extends Partial<AutocompleteProps<OptionType, false, false, false>> {
   disabled?: boolean;
   error?: boolean;
   helperText?: string;
@@ -15,7 +17,7 @@ interface IDropdownProps extends Partial<AutocompleteProps<any, any, any, any>> 
   label?: string;
   isSelect?: boolean;
   required?: boolean;
-  value?: string | number;
+  value?: OptionType | null;
   onChange?: (event: React.SyntheticEvent, value: OptionType | null) => void;
 }
 
@@ -26,6 +28,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
   options,
   label,
   isSelect = false,
+  value,
   onChange,
   ...props
 }) => {
@@ -40,8 +43,10 @@ const Dropdown: React.FC<IDropdownProps> = ({
         {...props}
         disabled={disabled}
         options={options}
+        value={value}
+        getOptionLabel={(option) => option.label}
         onChange={onChange}
-        disableClearable={isSelect}
+        // disableClearable={isSelect}
         renderInput={(params) => (
           <StyledTextField
             {...params}

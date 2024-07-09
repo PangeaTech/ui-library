@@ -1,38 +1,44 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Dropdown from './index';
 
-const meta = {
+const meta: Meta<typeof Dropdown> = {
   title: 'Components/Dropdown',
-  component: Dropdown
-} satisfies Meta<typeof Dropdown>;
+  component: Dropdown,
+  argTypes: {
+    disabled: { control: 'boolean' },
+    error: { control: 'boolean' },
+    label: { control: 'text' },
+    helperText: { control: 'text' },
+    isSelect: { control: 'boolean' },
+    required: { control: 'boolean' },
+    value: { control: 'object' },
+    onChange: { action: 'changed' }
+  }
+};
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Dropdown>;
+
+const options = [
+  { value: '1', label: 'Option 1' },
+  { value: '2', label: 'Option 2' },
+  { value: '3', label: 'Option 3' }
+];
 
 export const Default: Story = {
   args: {
     label: 'Example Dropdown',
-    options: [
-      { value: '1', label: 'Option 1' },
-      { value: '2', label: 'Option 2' },
-      { value: '3', label: 'Option 3' }
-    ],
-    value: '2',
-    onChange: (e, value) => console.log(value)
+    options,
+    value: null
   }
 };
 
 export const Disabled: Story = {
   args: {
     label: 'Disabled Dropdown',
-    options: [
-      { value: '1', label: 'Option 1' },
-      { value: '2', label: 'Option 2' },
-      { value: '3', label: 'Option 3' }
-    ],
-    value: '',
-    onChange: (e) => console.log(e.target),
+    options,
+    value: null,
     disabled: true
   }
 };
@@ -40,13 +46,8 @@ export const Disabled: Story = {
 export const WithError: Story = {
   args: {
     label: 'Dropdown with Error',
-    options: [
-      { value: '1', label: 'Option 1' },
-      { value: '2', label: 'Option 2' },
-      { value: '3', label: 'Option 3' }
-    ],
-    value: '',
-    onChange: (e) => console.log(e.target),
+    options,
+    value: null,
     error: true,
     helperText: 'This field is required'
   }
@@ -55,40 +56,7 @@ export const WithError: Story = {
 export const WithPreselectedValue: Story = {
   args: {
     label: 'Dropdown with Preselected Value',
-    options: [
-      { value: '1', label: 'Option 1' },
-      { value: '2', label: 'Option 2' },
-      { value: '3', label: 'Option 3' }
-    ],
-    value: '2',
-    onChange: (e) => console.log(e.target)
-  }
-};
-
-export const MultipleSelection: Story = {
-  args: {
-    label: 'Multiple Selection Dropdown',
-    options: [
-      { value: '1', label: 'Option 1' },
-      { value: '2', label: 'Option 2' },
-      { value: '3', label: 'Option 3' }
-    ],
-    value: '',
-    onChange: (e) => console.log(e.target),
-    multiple: true
-  }
-};
-
-export const FreeSolo: Story = {
-  args: {
-    label: 'Free Solo Dropdown',
-    options: [
-      { value: '1', label: 'Option 1' },
-      { value: '2', label: 'Option 2' },
-      { value: '3', label: 'Option 3' }
-    ],
-    value: '',
-    onChange: (e) => console.log(e.target),
-    freeSolo: true
+    options,
+    value: { value: '2', label: 'Option 2' }
   }
 };
