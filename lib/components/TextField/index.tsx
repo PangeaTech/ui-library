@@ -1,6 +1,7 @@
 import React from 'react';
-import { TextField as MuiTextField, BaseTextFieldProps, InputLabel, FormHelperText } from '@mui/material';
+import { TextField as MuiTextField, BaseTextFieldProps, InputLabel, FormHelperText, InputAdornment } from '@mui/material';
 import { styled } from '@mui/system';
+import '../../../src/index.css';
 
 interface ITextFieldProps extends BaseTextFieldProps {
   disabled?: boolean;
@@ -8,6 +9,8 @@ interface ITextFieldProps extends BaseTextFieldProps {
   helperText?: string;
   label?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  readOnly?: boolean;
+  startIcon?: React.ReactNode; // Define startIcon as React.ReactNode
 }
 
 const Wrapper = styled('div')({
@@ -16,11 +19,8 @@ const Wrapper = styled('div')({
   alignItems: 'flex-start',
   padding: 0,
   gap: '8px',
-  position: 'absolute',
-  width: '268px',
-  height: '88px',
-  left: 0,
-  top: '59px'
+  width: '100%',
+  maxWidth: '326px'
 });
 
 const LabelWrapper = styled('div')({
@@ -29,61 +29,59 @@ const LabelWrapper = styled('div')({
   alignItems: 'center',
   padding: '0px 10px 0px 0px',
   gap: '4px',
-  width: '268px',
+  width: '100%',
+  maxWidth: '326px',
   height: '20px'
 });
 
 const StyledInputLabel = styled(InputLabel)({
-  width: '248px',
+  width: '100%',
+  maxWidth: '248px',
   height: '28px',
-  fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: 400,
   fontSize: '14px',
-  lineHeight: '28px',
   display: 'flex',
   alignItems: 'center',
-  letterSpacing: '-0.02em',
   color: '#262626'
 });
 
-const StyledTextField = styled(MuiTextField)({
+const StyledTextField = styled((props: ITextFieldProps) => <MuiTextField {...props} />)(({ disabled, readOnly, error }) => ({
   '& .MuiInputBase-root': {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: '8px 8px 8px 12px',
+    padding: '8px 8px 8px 4px',
     gap: '8px',
-    width: '268px',
+    width: '100%',
+    maxWidth: '268px',
     height: '44px',
     background: '#FFFFFF',
-    border: '1px solid #DAD7D6',
+    border: error ? '1px solid #ED7857' : disabled || readOnly ? '1px solid #F4F4F4' : '1px solid #DAD7D6',
     borderRadius: '8px',
     '& input::placeholder': {
-      fontFamily: 'Inter',
       fontStyle: 'normal',
       fontWeight: 400,
       fontSize: '14px',
-      lineHeight: '28px',
       display: 'flex',
-      alignItems: 'center',
-      letterSpacing: '-0.02em',
-      color: '#262626'
+      color: disabled ? '#DAD7D6' : '#262626'
+    },
+    '& input': {
+      pointerEvents: readOnly ? 'none' : 'auto'
     }
   },
   '& .MuiOutlinedInput-notchedOutline': {
     border: 'none'
   }
-});
+}));
 
 const StyledHelperText = styled(FormHelperText)({
-  width: '268px',
+  width: '100%',
+  maxWidth: '268px',
   height: '12px',
-  fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: 400,
   fontSize: '12px',
-  lineHeight: '12px',
   color: '#ED7857',
   display: 'flex',
   alignItems: 'center',
@@ -93,7 +91,36 @@ const StyledHelperText = styled(FormHelperText)({
   flexGrow: 0
 });
 
-const TextField: React.FC<ITextFieldProps> = ({ disabled = false, error = false, helperText, label, onChange, ...props }) => {
+const ErrorIndicator = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-evenly',
+  alignItems: 'flex-start',
+  padding: '0px',
+  gap: '6px',
+  width: '100%',
+  maxWidth: '268px',
+  height: '3px'
+});
+
+const ErrorRectangle = styled('div')({
+  height: '3px',
+  background: '#ED7857',
+  borderRadius: '1px',
+  flex: 'none',
+  flexGrow: 1
+});
+
+const TextField: React.FC<ITextFieldProps> = ({
+  disabled = false,
+  error = false,
+  helperText,
+  label,
+  onChange,
+  readOnly = false,
+  startIcon,
+  ...props
+}) => {
   return (
     <Wrapper>
       {label && (
@@ -101,7 +128,25 @@ const TextField: React.FC<ITextFieldProps> = ({ disabled = false, error = false,
           <StyledInputLabel shrink>{label}</StyledInputLabel>
         </LabelWrapper>
       )}
-      <StyledTextField {...props} error={error} onChange={onChange} disabled={disabled} InputLabelProps={{ shrink: true }} />
+      <StyledTextField
+        {...props}
+        error={error}
+        onChange={onChange}
+        disabled={disabled}
+        readOnly={readOnly}
+        InputLabelProps={{ shrink: true }}
+        inputProps={{
+          startAdornment: startIcon ? <InputAdornment position="start">{startIcon}</InputAdornment> : null
+        }}
+      />
+      {error && (
+        <ErrorIndicator>
+          <ErrorRectangle />
+          <ErrorRectangle />
+          <ErrorRectangle />
+          <ErrorRectangle />
+        </ErrorIndicator>
+      )}
       {helperText && <StyledHelperText>{helperText}</StyledHelperText>}
     </Wrapper>
   );

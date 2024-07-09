@@ -168,7 +168,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="bg-red-50">
       <div className="App">
         <h1>Textarea example</h1>
         <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} error={true} disabled={true} />
