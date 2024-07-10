@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Autocomplete, AutocompleteProps } from '@mui/material';
-import { Wrapper, LabelWrapper, StyledInputLabel, StyledHelperText, StyledTextField } from '../TextField/index';
+import { Wrapper, StyledHelperText, StyledTextField } from '../TextField/index';
 
 interface OptionType {
   value: string | number;
@@ -34,11 +34,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
 }) => {
   return (
     <Wrapper>
-      {label && (
-        <LabelWrapper>
-          <StyledInputLabel shrink>{label}</StyledInputLabel>
-        </LabelWrapper>
-      )}
+      {label && <span className="font-base text-sm">{label}</span>}
       <Autocomplete
         {...props}
         disabled={disabled}
@@ -46,18 +42,8 @@ const Dropdown: React.FC<IDropdownProps> = ({
         value={value}
         getOptionLabel={(option) => option.label}
         onChange={onChange}
-        // disableClearable={isSelect}
-        renderInput={(params) => (
-          <StyledTextField
-            {...params}
-            error={error}
-            inputProps={{
-              ...params.InputProps,
-              startAdornment: params.InputProps?.startAdornment
-            }}
-            placeholder="Select"
-          />
-        )}
+        renderInput={(params) => <StyledTextField {...params} error={error} placeholder="Select" />}
+        fullWidth
       />
       {helperText && <StyledHelperText>{helperText}</StyledHelperText>}
     </Wrapper>

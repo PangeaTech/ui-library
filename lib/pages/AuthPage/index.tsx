@@ -69,7 +69,7 @@ const AuthPage: React.FC<IAuthPageProps> = ({ mode, logoUrl, onSubmit }) => {
           onChange={(e) => handleChange(field.label, e.target.value)}
           variant="outlined"
           fullWidth
-          margin="normal"
+          className="mb-6"
         />
       ))}
       <Button onClick={handleSubmit} variant="contained" color="primary">

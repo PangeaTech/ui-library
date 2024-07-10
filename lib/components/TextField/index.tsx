@@ -1,9 +1,9 @@
 import React from 'react';
-import { TextField as MuiTextField, BaseTextFieldProps, InputLabel, FormHelperText, InputAdornment } from '@mui/material';
+import { TextField as MuiTextField, InputLabel, FormHelperText, InputAdornment, TextFieldProps } from '@mui/material';
 import { styled } from '@mui/system';
 import '../../../src/index.css';
 
-interface ITextFieldProps extends BaseTextFieldProps {
+interface ITextFieldProps extends Omit<TextFieldProps, 'onChange'> {
   disabled?: boolean;
   error?: boolean;
   helperText?: string;
@@ -11,6 +11,7 @@ interface ITextFieldProps extends BaseTextFieldProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
   startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
 }
 
 export const Wrapper = styled('div')({
@@ -18,7 +19,7 @@ export const Wrapper = styled('div')({
   flexDirection: 'column',
   alignItems: 'flex-start',
   padding: 0,
-  gap: '8px',
+  gap: '4px',
   width: '100%',
   maxWidth: '326px'
 });
@@ -31,7 +32,7 @@ export const LabelWrapper = styled('div')({
   gap: '4px',
   width: '100%',
   maxWidth: '326px',
-  height: '20px'
+  height: '12px'
 });
 
 export const StyledInputLabel = styled(InputLabel)({
@@ -98,8 +99,9 @@ const ErrorIndicator = styled('div')({
   padding: '0px',
   gap: '6px',
   width: '100%',
-  maxWidth: '268px',
-  height: '3px'
+  maxWidth: '236px',
+  height: '3px',
+  marginTop: '6px'
 });
 
 const ErrorRectangle = styled('div')({
@@ -118,27 +120,28 @@ const TextField: React.FC<ITextFieldProps> = ({
   onChange,
   readOnly = false,
   startIcon,
+  endIcon,
   ...props
 }) => {
   return (
     <Wrapper>
-      {label && (
-        <LabelWrapper>
-          <StyledInputLabel shrink>{label}</StyledInputLabel>
-        </LabelWrapper>
-      )}
+      {label && <span className="font-base text-sm">{label}</span>}
       <StyledTextField
         {...props}
         error={error}
         onChange={onChange}
         disabled={disabled}
         readOnly={readOnly}
-        InputLabelProps={{ shrink: true }}
-        inputProps={{
-          startAdornment: startIcon ? <InputAdornment position="start">{startIcon}</InputAdornment> : null
+        InputProps={{
+          startAdornment: startIcon ? <InputAdornment position="start">{startIcon}</InputAdornment> : null,
+          endAdornment: endIcon ? (
+            <InputAdornment position="end" sx={{ marginRight: '8px' }}>
+              {endIcon}
+            </InputAdornment>
+          ) : null
         }}
       />
-      {error && (
+      {error && props.type === 'password' && (
         <ErrorIndicator>
           <ErrorRectangle />
           <ErrorRectangle />

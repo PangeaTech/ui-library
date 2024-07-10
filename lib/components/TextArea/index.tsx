@@ -15,18 +15,18 @@ interface ITextAreaProps extends BaseTextFieldProps {
 const TextArea: React.FC<ITextAreaProps> = ({ disabled = false, error = false, helperText, label, onChange, sx, ...props }) => {
   const defaultSx: SxProps<Theme> = {
     '& .MuiInputBase-root': {
-      backgroundColor: disabled ? '#f5f5f5' : 'inherit',
-      color: disabled ? '#9e9e9e' : 'inherit'
+      backgroundColor: disabled ? '#f5f5f5' : 'white',
+      color: disabled ? '#9e9e9e' : 'inherit',
+      minWidth: '236px'
     },
     '& .MuiFormLabel-root': {
       color: disabled ? '#9e9e9e' : 'inherit'
     }
   };
-
   return (
     <FormControl fullWidth margin="normal">
-      {label && <InputLabel shrink>{label}</InputLabel>}
-      <Box sx={{ marginTop: label ? '1.5em' : 0 }}>
+      {label && <span className="mb-1 text-sm">{label}</span>}
+      <Box>
         <TextField
           {...props}
           error={error}
@@ -36,7 +36,6 @@ const TextArea: React.FC<ITextAreaProps> = ({ disabled = false, error = false, h
           multiline
           rows={4}
           sx={{ ...defaultSx, ...sx }}
-          InputLabelProps={{ shrink: true }}
         />
       </Box>
     </FormControl>
