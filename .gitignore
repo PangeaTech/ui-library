@@ -24,6 +24,7 @@ pnpm*
 *.njsproj
 *.sln
 *.sw?
+storybook-static
 
 # files
 *.tgz

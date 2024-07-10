@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField, { BaseTextFieldProps } from '@mui/material/TextField';
-import { Box, FormControl, InputLabel } from '@mui/material';
+import { Box, FormControl } from '@mui/material';
 import { SxProps, Theme } from '@mui/system';
 
 interface ITextAreaProps extends BaseTextFieldProps {

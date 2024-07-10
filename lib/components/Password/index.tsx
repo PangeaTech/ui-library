@@ -27,16 +27,6 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({ onChange, error = false,
     onChange(event.target.value);
   };
 
-  const defaultSx: SxProps<Theme> = {
-    '& .MuiInputBase-root': {
-      backgroundColor: disabled ? '#f5f5f5' : 'inherit',
-      color: disabled ? '#9e9e9e' : 'inherit'
-    },
-    '& .MuiFormLabel-root': {
-      color: disabled ? '#9e9e9e' : 'inherit'
-    }
-  };
-
   return (
     <FormControl>
       {label && <span className="font-base text-sm mb-1">{label}</span>}

@@ -16,7 +16,7 @@ export interface ICheckboxProps extends CheckboxProps {
   className?: ColorClassName;
 }
 
-const StyledFormControlLabel = styled(FormControlLabel)(({}) => ({
+const StyledFormControlLabel = styled(FormControlLabel)(() => ({
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'flex-start',
@@ -35,7 +35,7 @@ const StyledFormControlLabel = styled(FormControlLabel)(({}) => ({
   }
 }));
 
-const StyledCheckbox = styled(MuiCheckbox)(({}) => ({
+const StyledCheckbox = styled(MuiCheckbox)(() => ({
   boxSizing: 'border-box',
   width: '20px',
   height: '20px',

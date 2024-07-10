@@ -1,5 +1,5 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["lib"],
+  "include": ["lib", "src/declaration.d.ts"],
   "exclude": ["**/*.stories.tsx"]
 }
