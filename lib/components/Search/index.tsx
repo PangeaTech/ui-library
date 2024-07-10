@@ -55,11 +55,11 @@ const SearchBar: React.FC<ISearchBarProps> = ({ onChange, disabled = false, micI
         endAdornment:
           micIcon == true ? (
             <InputAdornment position="end">
-              <img src={MicIcon} alt="Mic Icon" />
+              <img src={MicIcon} alt="Mic Icon" className="w-5" />
             </InputAdornment>
           ) : (
             <InputAdornment position="end">
-              <img src={SearchIcon} alt="Search Icon" />
+              <img src={SearchIcon} alt="Search Icon" className="w-5" />
             </InputAdornment>
           )
       }}

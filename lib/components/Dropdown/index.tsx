@@ -34,11 +34,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
 }) => {
   return (
     <Wrapper>
-      {label && (
-        <LabelWrapper>
-          <StyledInputLabel shrink>{label}</StyledInputLabel>
-        </LabelWrapper>
-      )}
+      {label && <span className="font-base text-sm">{label}</span>}
       <Autocomplete
         {...props}
         disabled={disabled}
@@ -51,13 +47,14 @@ const Dropdown: React.FC<IDropdownProps> = ({
           <StyledTextField
             {...params}
             error={error}
-            inputProps={{
-              ...params.InputProps,
-              startAdornment: params.InputProps?.startAdornment
-            }}
+            // inputProps={{
+            //   ...params.InputProps,
+            //   startAdornment: params.InputProps?.startAdornment
+            // }}
             placeholder="Select"
           />
         )}
+        fullWidth
       />
       {helperText && <StyledHelperText>{helperText}</StyledHelperText>}
     </Wrapper>

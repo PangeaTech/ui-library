@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import TextField, { TextFieldProps } from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
+import { TextFieldProps } from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { Box, FormControl, FormHelperText, InputLabel } from '@mui/material';
+import { Box, FormControl, FormHelperText } from '@mui/material';
 import { SxProps, Theme } from '@mui/system';
+import { TextField } from 'ui-library';
 
 export interface IPasswordInputProps extends Omit<TextFieldProps, 'onChange'> {
   onChange: (value: string) => void;
@@ -38,17 +38,17 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({ onChange, error = false,
   };
 
   return (
-    <FormControl fullWidth margin="normal">
-      {label && <InputLabel shrink>{label}</InputLabel>}
-      <Box sx={{ marginTop: label ? '1.5em' : 0 }}>
+    <FormControl>
+      {label && <span className="font-base text-sm mb-1">{label}</span>}
+      <Box>
         <TextField
           {...props}
           type={showPassword ? 'text' : 'password'}
           error={error}
           onChange={handleChange}
           disabled={disabled}
-          sx={{ ...defaultSx, ...sx }}
-          InputProps={{
+          // sx={{ ...defaultSx, ...sx }}
+          /* InputProps={{
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton onClick={togglePasswordVisibility} edge="end">
@@ -56,8 +56,18 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({ onChange, error = false,
                 </IconButton>
               </InputAdornment>
             )
-          }}
-          InputLabelProps={{ shrink: true }}
+          }} */
+          endIcon={
+            showPassword ? (
+              <IconButton onClick={togglePasswordVisibility} edge="end">
+                <VisibilityIcon />
+              </IconButton>
+            ) : (
+              <IconButton onClick={togglePasswordVisibility} edge="end">
+                <VisibilityOffIcon />
+              </IconButton>
+            )
+          }
         />
       </Box>
       {helperText && <FormHelperText error={error}>{helperText}</FormHelperText>}

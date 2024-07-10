@@ -181,7 +181,7 @@ const App: React.FC = () => {
       </div>
       <div className="App">
         <h1>Textarea example</h1>
-        <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} error={true} disabled={true} />
+        <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} error={false} disabled={false} />
       </div>
       <div className="App">
         <h1>Searchbar example</h1>
