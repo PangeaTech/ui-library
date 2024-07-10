@@ -125,11 +125,6 @@ const TextField: React.FC<ITextFieldProps> = ({
 }) => {
   return (
     <Wrapper>
-      {/* {label && (
-        <LabelWrapper>
-          <StyledInputLabel>{label}</StyledInputLabel>
-        </LabelWrapper>
-      )} */}
       {label && <span className="font-base text-sm">{label}</span>}
       <StyledTextField
         {...props}
@@ -137,7 +132,6 @@ const TextField: React.FC<ITextFieldProps> = ({
         onChange={onChange}
         disabled={disabled}
         readOnly={readOnly}
-        // InputLabelProps={{ shrink: true }}
         InputProps={{
           startAdornment: startIcon ? <InputAdornment position="start">{startIcon}</InputAdornment> : null,
           endAdornment: endIcon ? (
