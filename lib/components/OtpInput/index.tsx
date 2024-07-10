@@ -11,6 +11,7 @@ interface IOtpInputProps {
 
 const OtpInput: React.FC<IOtpInputProps> = ({ length, onChange, label, disabled = false }) => {
   const [otpValues, setOtpValues] = useState<string[]>(Array(length).fill(''));
+  const [errorText, setErrorText] = useState<string>('');
 
   const inputsRef = useRef<HTMLInputElement[]>([]);
 
@@ -21,20 +22,29 @@ const OtpInput: React.FC<IOtpInputProps> = ({ length, onChange, label, disabled 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, index: number) => {
     const { value } = e.target;
     const newOtpValues = [...otpValues];
+    let isValid = true;
 
     for (let i = 0; i < value.length; i++) {
       if (index + i < length) {
+        if (!/^\d+$/.test(value[i])) {
+          isValid = false;
+          break;
+        }
         newOtpValues[index + i] = value[i];
       }
     }
 
-    setOtpValues(newOtpValues);
-
-    if (value.length > 0 && index + value.length < length) {
-      const nextInput = inputsRef.current[index + value.length];
-      if (nextInput) {
-        nextInput.focus();
+    if (isValid) {
+      setOtpValues(newOtpValues);
+      setErrorText('');
+      if (value.length > 0 && index + value.length < length) {
+        const nextInput = inputsRef.current[index + value.length];
+        if (nextInput) {
+          nextInput.focus();
+        }
       }
+    } else {
+      setErrorText('Please enter numbers only.');
     }
   };
 
@@ -76,6 +86,7 @@ const OtpInput: React.FC<IOtpInputProps> = ({ length, onChange, label, disabled 
           />
         ))}
       </Box>
+      {errorText && <p style={{ color: 'red', marginTop: '8px' }}>{errorText}</p>}
     </Box>
   );
 };

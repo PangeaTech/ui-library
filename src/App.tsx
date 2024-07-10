@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Dropdown, Logo, OtpInput, PasswordInput, Radio, TextField } from 'ui-library';
+import { Button, Checkbox, Dropdown, Logo, OtpInput, PasswordInput, Radio, TextField } from 'ui-library';
 import TextArea from 'ui-library/components/TextArea';
 import SearchBar from 'ui-library/components/Search';
 import OtpAuthPage, { IOtpAuthPageProps } from 'ui-library/pages/OtpAuthPage';
@@ -172,6 +172,11 @@ const App: React.FC = () => {
       <div className="App">
         <h1>Textarea example</h1>
         <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} error={true} disabled={true} />
+      </div>
+      <div className="App">
+        <h1>Checkbox example</h1>
+        <Checkbox label="Option 1" className="pangea-blue-100" />
+        <Checkbox label="Option 2" className="bg-pangea-blue-100" />
       </div>
       <div className="App">
         <h1>Searchbar example</h1>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import { styled } from '@mui/system';
@@ -37,31 +37,37 @@ interface ISearchBarProps extends Omit<TextFieldProps, 'onChange'> {
 }
 
 const SearchBar: React.FC<ISearchBarProps> = ({ onChange, disabled = false, micIcon, ...props }) => {
+  const [value, setValue] = useState<string>('');
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
     onChange(event.target.value);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      setValue('');
+    }
   };
 
   return (
     <StyledTextField
       placeholder="Search..."
       disabled={disabled}
+      value={value}
       onChange={handleChange}
+      onKeyDown={handleKeyDown}
       InputProps={{
-        startAdornment: micIcon && micIcon == true && (
+        startAdornment: micIcon ? (
           <InputAdornment position="start">
             <img src={SearchIcon} alt="Search Icon" />
           </InputAdornment>
-        ),
-        endAdornment:
-          micIcon == true ? (
-            <InputAdornment position="end">
-              <img src={MicIcon} alt="Mic Icon" />
-            </InputAdornment>
-          ) : (
-            <InputAdornment position="end">
-              <img src={SearchIcon} alt="Search Icon" />
-            </InputAdornment>
-          )
+        ) : null,
+        endAdornment: (
+          <InputAdornment position="end">
+            {micIcon ? <img src={MicIcon} alt="Mic Icon" /> : <img src={SearchIcon} alt="Search Icon" />}
+          </InputAdornment>
+        )
       }}
       {...props}
     />
