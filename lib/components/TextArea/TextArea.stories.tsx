@@ -51,3 +51,19 @@ export const WithPlaceholder: Story = {
     placeholder: 'Write few lines....'
   }
 };
+
+export const Resize: Story = {
+  args: {
+    label: 'Resizable textfield',
+    resizable: true
+    // multiline:true
+  }
+};
+
+export const AutoResize: Story = {
+  args: {
+    label: 'Auto-resize Text area',
+    autoResize: true,
+    resizable: true
+  }
+};

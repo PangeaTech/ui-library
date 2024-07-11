@@ -63,7 +63,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData }) => {
                 options={data.options}
                 required={data.required}
                 value={value}
-                onChange={(_e, { value }) => onChange(value)}
+                onChange={(_e, InputValue) => onChange(InputValue?.value)}
                 error={invalid}
                 helperText={invalid ? error?.message : ''}
               />
@@ -77,7 +77,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData }) => {
             control={control}
             rules={data?.rules}
             render={({ field, fieldState: { invalid, error } }) => (
-              <TextArea label={data.label} {...field} error={invalid} helperText={invalid ? error?.message : ''} fullWidth />
+              <TextArea label={data.label} {...field} error={invalid} helperText={invalid ? error?.message : ''} />
             )}
           />
         );

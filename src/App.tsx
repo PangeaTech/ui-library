@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Dropdown, Logo, OtpInput, PasswordInput, Radio, TextField } from 'ui-library';
+import { Button, Checkbox, Dropdown, Logo, OtpInput, PasswordInput, Radio, TextField } from 'ui-library';
 import TextArea from 'ui-library/components/TextArea';
 import SearchBar from 'ui-library/components/Search';
 import OtpAuthPage, { IOtpAuthPageProps } from 'ui-library/pages/OtpAuthPage';
@@ -26,7 +26,7 @@ const App: React.FC = () => {
   const [passwordError, setPasswordError] = useState('');
   const [otp, setOtp] = useState('');
   const [otpError, setOtpError] = useState(false);
-  const [flag, setFlag] = useState(true);
+  const [flag, setFlag] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string>('option1');
 
   const options: RadioOption[] = [
@@ -168,26 +168,25 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="bg-red-50">
       <div className="App">
-        <h1>Textfield example</h1>
-        <TextField label="Example Label" value={textFieldValue} onChange={handleTextFieldChange} errormsg={textFieldError} disabled={true} />
-      </div>
-      <div className="App">
-        <h1>Dropdown example</h1>
-        <Dropdown
-          label="Example Dropdown"
-          value={dropdownValue}
-          onChange={handleDropdownChange}
-          errormsg={dropdownError}
-          disabled={false}
-          options={dropdownOptions}
-          isSelect={true} // Set to true for select-like behavior
+        <TextField
+          label="Example TextField"
+          value={textFieldValue}
+          onChange={handleTextFieldChange}
+          error={!!textFieldError}
+          helperText={textFieldError ? 'This field is required' : ''}
+          variant="outlined"
         />
       </div>
       <div className="App">
         <h1>Textarea example</h1>
-        <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} error={true} disabled={true} />
+        <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} error={false} disabled={true} />
+      </div>
+      <div className="App">
+        <h1>Checkbox example</h1>
+        <Checkbox label="Option 1" className="pangea-blue-100" />
+        <Checkbox label="Option 2" className="bg-pangea-blue-100" />
       </div>
       <div className="App">
         <h1>Searchbar example</h1>

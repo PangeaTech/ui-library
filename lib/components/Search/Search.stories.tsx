@@ -6,7 +6,8 @@ const meta = {
   component: Search,
   argTypes: {
     disabled: { control: 'boolean' },
-    onChange: { action: 'changed' }
+    onChange: { action: 'changed' },
+    micIcon: { control: 'boolean' }
   }
 } satisfies Meta<typeof Search>;
 
@@ -17,5 +18,19 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     onChange: () => {}
+  }
+};
+
+export const MicIcon: Story = {
+  args: {
+    onChange: () => {},
+    micIcon: true
+  }
+};
+
+export const Disabled: Story = {
+  args: {
+    onChange: () => {},
+    disabled: true
   }
 };

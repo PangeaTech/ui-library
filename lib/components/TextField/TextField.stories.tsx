@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import TextField from './index';
 import React from 'react';
+import { AccountCircle } from '@mui/icons-material';
 
 const meta: Meta<typeof TextField> = {
   title: 'Components/TextField',
@@ -9,7 +10,9 @@ const meta: Meta<typeof TextField> = {
     disabled: { control: 'boolean' },
     error: { control: 'boolean' },
     label: { control: 'text' },
-    onChange: { action: 'changed' }
+    onChange: { action: 'changed' },
+    readOnly: { control: 'boolean' },
+    startIcon: { control: 'object' }
   }
 };
 
@@ -19,14 +22,15 @@ type Story = StoryObj<typeof TextField>;
 
 export const Default: Story = {
   args: {
-    label: 'Default TextField'
+    label: 'Label'
   }
 };
 
 export const Disabled: Story = {
   args: {
     label: 'Disabled TextField',
-    disabled: true
+    disabled: true,
+    placeholder: 'hello'
   }
 };
 
@@ -45,21 +49,17 @@ export const WithHelperText: Story = {
   }
 };
 
-export const WithValue: Story = {
+export const ReadOnly: Story = {
   args: {
     label: 'TextField with Value',
-    value: 'John Doe'
+    value: 'John Doe',
+    readOnly: true
   }
 };
 
 export const WithCustomStyles: Story = {
   args: {
-    label: 'TextField with Custom Styles',
-    sx: {
-      '& .MuiInputBase-root': {
-        backgroundColor: '#e0f7fa'
-      }
-    }
+    label: 'TextField with Custom Styles'
   }
 };
 
@@ -70,19 +70,18 @@ export const WithPlaceholder: Story = {
   }
 };
 
-export const Multiline: Story = {
-  args: {
-    label: 'Multiline TextField',
-    multiline: true,
-    rows: 4
-  }
-};
+// export const Multiline: Story = {
+//   args: {
+//     label: 'Multiline TextField',
+//     multiline: true,
+//     rows: 4
+//   }
+// };
 
-export const WithEndAdornment: Story = {
+export const WithStartIcon: Story = {
   args: {
-    label: 'TextField with End Adornment',
-    inputProps: {
-      endAdornment: <span>@example.com</span>
-    }
+    label: 'TextField with Start Icon',
+    startIcon: <AccountCircle />,
+    placeholder: 'Enter your username'
   }
 };
