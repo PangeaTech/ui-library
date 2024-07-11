@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import { styled } from '@mui/system';
-import SearchIcon from '../../../src/assets/search.png';
-import MicIcon from '../../../src/assets/microphone.png';
+import MicIcon from '@mui/icons-material/Mic';
+import SearchIcon from '@mui/icons-material/Search';
+// import SearchIcon from '../../../src/assets/search.png';
+// import MicIcon from '../../../src/assets/microphone.png';
 
 const StyledTextField = styled(TextField)(({ disabled }) => ({
   '& .MuiInputBase-root': {
@@ -60,14 +62,10 @@ const SearchBar: React.FC<ISearchBarProps> = ({ onChange, disabled = false, micI
       InputProps={{
         startAdornment: micIcon ? (
           <InputAdornment position="start">
-            <img src={SearchIcon} alt="Search Icon" />
+            <SearchIcon />
           </InputAdornment>
         ) : null,
-        endAdornment: (
-          <InputAdornment position="end">
-            {micIcon ? <img src={MicIcon} alt="Mic Icon" /> : <img src={SearchIcon} alt="Search Icon" />}
-          </InputAdornment>
-        )
+        endAdornment: <InputAdornment position="end">{micIcon ? <MicIcon /> : <SearchIcon />}</InputAdornment>
       }}
       {...props}
     />
