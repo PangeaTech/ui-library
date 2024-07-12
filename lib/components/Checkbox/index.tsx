@@ -4,7 +4,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import { styled } from '@mui/system';
 import CheckIcon from '@mui/icons-material/Check';
-import '../../color-palettes.css';
 import { colorClasses, ColorClassName } from '../../themeConfig';
 
 export interface ICheckboxProps extends CheckboxProps {
@@ -36,14 +35,18 @@ const StyledFormControlLabel = styled(FormControlLabel)(() => ({
   }
 }));
 
-const StyledCheckbox = styled(MuiCheckbox)(() => ({
+const StyledCheckbox = styled(MuiCheckbox)(({}) => ({
   boxSizing: 'border-box',
   width: '20px',
   height: '20px',
-  backgroundColor: '#DFE0FF',
-  border: '1px solid #2D35DC',
+  backgroundColor: '#FAFAFA',
+  border: '1px solid #D6D6D6',
   borderRadius: '6px',
   padding: 0,
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
   '&.Mui-checked': {
     backgroundColor: '#DFE0FF',
     border: '1px solid #2D35DC',

@@ -20,3 +20,6 @@ export { default as Logo } from './components/Logo';
 export { default as Date } from './components/Date';
 export { default as Table } from './components/Table';
 export { default as JsonForm } from './components/JsonForm';
+export { colorClasses, typographyClasses } from './themeConfig';
+export type { TypographyClassName } from './themeConfig';
+export type { ColorClassName } from './themeConfig';

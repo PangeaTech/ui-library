@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-
 import Checkbox from './index';
 
 const meta = {
@@ -36,7 +35,8 @@ export const Default: Story = {
 export const Disabled: Story = {
   args: {
     label: 'Disabled checkbox',
-    disabled: true
+    disabled: true,
+    checked: true
   }
 };
 

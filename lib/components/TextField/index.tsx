@@ -115,7 +115,7 @@ const TextField: React.FC<ITextFieldProps> = ({
       {label && <span className="font-base text-sm">{label}</span>}
       <StyledTextField
         {...props}
-        className={`custom-class ${className ?? ''}`} // Apply custom class and user-provided className
+        className={`custom-class ${className ?? ''}`}
         error={error}
         onChange={onChange}
         disabled={disabled}

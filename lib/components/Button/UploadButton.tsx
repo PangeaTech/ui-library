@@ -92,6 +92,14 @@ const UploadButton: React.FC<IFileUpload> = ({ onUpload, type, filesAllowedinFol
     accept: 'image/jpeg, image/png, image/jpg',
     multiple: true
   };
+  const audioProps = {
+    accept: 'audio/mp3',
+    multiple: true
+  };
+  const videoProps = {
+    accept: 'video/mp4',
+    multiple: true
+  };
 
   let inputProps = {};
   // Dynamically set the input props based on input type
@@ -104,6 +112,12 @@ const UploadButton: React.FC<IFileUpload> = ({ onUpload, type, filesAllowedinFol
       break;
     case 'image':
       inputProps = imageProps;
+      break;
+    case 'audio':
+      inputProps = audioProps;
+      break;
+    case 'video':
+      inputProps = videoProps;
       break;
   }
 
