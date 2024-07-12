@@ -17,14 +17,13 @@
     }
   },
   "repository": {
-  "type": "git",
-  "url": "https://github.com/PangeaTech/ui-library.git"
+    "type": "git",
+    "url": "https://github.com/PangeaTech/ui-library.git"
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "storybook":"concurrently 'npm:watch:*'",
     "storybook": "start-storybook -p 6006",
     "watch:tailwind": "npx tailwindcss -i ./src/index.css -o ./src/styles/tailwind.css --watch",
     "dev": "vite",
@@ -32,13 +31,11 @@
     "build": "tsc --p ./tsconfig-build.json && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "prepare": "husky",
-    "watch:storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
     "prepare": "husky install",
     "watch:storybook": "start-storybook -p 6006 --watch",
     "build-storybook": "build-storybook",
-    "preview-storybook": "http-server storybook-static"
+    "preview-storybook": "http-server storybook-static",
+    "tailwind-and-storybook": "npm run watch:tailwind && npm run storybook"
   },
   "lint-staged": {
     "*.{js,json,ts,tsx}": [
