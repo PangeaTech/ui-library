@@ -1,6 +1,5 @@
 {
-  "name": "ui-library",
-  "private": false,
+  "name": "@pangeatech/ui-library",
   "version": "0.0.0",
   "type": "module",
   "files": [
@@ -16,6 +15,13 @@
       "default": "./dist/page.js",
       "types": "./dist/page.d.ts"
     }
+  },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/PangeaTech/ui-library.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "storybook":"concurrently 'npm:watch:*'",
