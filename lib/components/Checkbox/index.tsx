@@ -3,6 +3,7 @@ import { CheckboxProps, default as MuiCheckbox } from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import { styled } from '@mui/system';
+import CheckIcon from '@mui/icons-material/Check';
 import '../../color-palettes.css';
 import { colorClasses, ColorClassName } from '../../themeConfig';
 
@@ -46,15 +47,9 @@ const StyledCheckbox = styled(MuiCheckbox)(() => ({
   '&.Mui-checked': {
     backgroundColor: '#DFE0FF',
     border: '1px solid #2D35DC',
-    '&:before': {
-      content: '""',
-      position: 'absolute',
-      left: '15%',
-      right: '15%',
-      top: '15%',
-      bottom: '15%',
-      background: `url('path-to-check-icon') no-repeat center center`,
-      backgroundSize: 'contain'
+    '& .MuiSvgIcon-root': {
+      display: 'block',
+      color: '#2D35DC'
     }
   },
   '& .MuiSvgIcon-root': {
@@ -78,7 +73,16 @@ const Checkbox: React.FC<ICheckboxProps> = ({ disabled, onChange, checked = fals
       <StyledFormControlLabel
         required={required}
         labelPlacement={labelPlacement}
-        control={<StyledCheckbox className={className ? colorClasses[className] : ''} disabled={disabled} onChange={onChange} checked={checked} />}
+        control={
+          <StyledCheckbox
+            className={className ? colorClasses[className] : ''}
+            disabled={disabled}
+            onChange={onChange}
+            checked={checked}
+            icon={<CheckIcon />}
+            checkedIcon={<CheckIcon />}
+          />
+        }
         label={label}
       />
     </FormGroup>

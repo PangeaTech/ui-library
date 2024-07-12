@@ -1,3 +1,6 @@
+import { useRef } from 'react';
+import Button from './index';
+
 export type uploadType = 'file' | 'folder' | 'image' | 'audio' | 'video';
 export interface IFileUpload {
   onUpload: (files: File[]) => void;
@@ -7,6 +10,8 @@ export interface IFileUpload {
 }
 
 const UploadButton: React.FC<IFileUpload> = ({ onUpload, type, filesAllowedinFolder, label }) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const isFileDocOrPdf = (file: File) => {
     const validFileTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
     return validFileTypes.includes(file.type);
@@ -49,6 +54,7 @@ const UploadButton: React.FC<IFileUpload> = ({ onUpload, type, filesAllowedinFol
     }
     return false;
   };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const fileList = e.target.files;
@@ -58,7 +64,13 @@ const UploadButton: React.FC<IFileUpload> = ({ onUpload, type, filesAllowedinFol
       } else {
         alert('Please select valid files');
       }
-      e.target.value = ''; //  Clearing value to reuse the add button without refresh
+      e.target.value = ''; // Clearing value to reuse the add button without refresh
+    }
+  };
+
+  const handleButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
     }
   };
 
@@ -96,17 +108,9 @@ const UploadButton: React.FC<IFileUpload> = ({ onUpload, type, filesAllowedinFol
   }
 
   return (
-    <div className="flex text-white border bg-blue-500 cursor-pointer hover:bg-blue-600  rounded-lg px-2 py-1 m-1 justify-center max-w-xs">
-      <label htmlFor={`file-upload-${type}`} className="cursor-pointer font-normal">
-        {label}
-      </label>
-      <input
-        type="file"
-        className="text-white border w-2/4 bg-green-600 rounded-lg px-2 py-1 m-1 justify-center hidden"
-        id={`file-upload-${type}`}
-        onChange={(e) => handleFileChange(e)}
-        {...inputProps}
-      />
+    <div>
+      <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileChange} {...inputProps} />
+      <Button onClick={handleButtonClick}>{label}</Button>
     </div>
   );
 };
