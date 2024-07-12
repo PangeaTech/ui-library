@@ -1,5 +1,30 @@
 {
+  "name": "@pangeatech/ui-library",
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "module": "./dist/main.js",
+  "exports": {
+    ".": {
+      "default": "./dist/main.js",
+      "types": "./dist/main.d.ts"
+    },
+    "./pages": {
+      "default": "./dist/page.js",
+      "types": "./dist/page.d.ts"
+    }
+  },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/PangeaTech/ui-library.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
+    "storybook":"concurrently 'npm:watch:*'",
     "storybook": "start-storybook -p 6006",
     "watch:tailwind": "npx tailwindcss -i ./src/index.css -o ./src/styles/tailwind.css --watch",
     "dev": "vite",
@@ -7,10 +32,18 @@
     "build": "tsc --p ./tsconfig-build.json && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "prepare": "husky",
+    "watch:storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "prepare": "husky install",
     "watch:storybook": "start-storybook -p 6006 --watch",
     "build-storybook": "build-storybook",
     "preview-storybook": "http-server storybook-static"
+  },
+  "lint-staged": {
+    "*.{js,json,ts,tsx}": [
+      "npx prettier --write"
+    ]
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
