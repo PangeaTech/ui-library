@@ -1,41 +1,52 @@
-import React from 'react';
-import { Autocomplete, TextField, AutocompleteProps, InputLabel, Box, FormControl } from '@mui/material';
+// src/components/Dropdown.tsx
 
-interface IDropdownProps extends Partial<AutocompleteProps<any, any, any, any>> {
-  disabled?: boolean;
-  errormsg?: string;
-  options: { value: string | number; label: string }[];
-  label?: string;
-  isSelect?: boolean;
+import React from 'react';
+import { Autocomplete, AutocompleteProps } from '@mui/material';
+import { Wrapper, StyledHelperText, StyledTextField } from '../TextField/index';
+
+interface OptionType {
+  value: string | number;
+  label: string;
 }
 
-const Dropdown: React.FC<IDropdownProps> = ({ disabled = true, errormsg, options, label, isSelect = false, onChange, ...props }) => {
+interface IDropdownProps extends Partial<AutocompleteProps<OptionType, false, false, false>> {
+  disabled?: boolean;
+  error?: boolean;
+  helperText?: string;
+  options: OptionType[];
+  label?: string;
+  isSelect?: boolean;
+  required?: boolean;
+  value?: OptionType | null;
+  onChange?: (event: React.SyntheticEvent, value: OptionType | null) => void;
+}
+
+const Dropdown: React.FC<IDropdownProps> = ({
+  disabled = false,
+  error = false,
+  helperText,
+  options,
+  label,
+  isSelect = false,
+  value,
+  onChange,
+  ...props
+}) => {
   return (
-    <FormControl fullWidth margin="normal">
-      {label && <InputLabel shrink>{label}</InputLabel>}
-      <Box sx={{ marginTop: label ? '1.5em' : 0 }}>
-        <Autocomplete
-          {...props}
-          disabled={!disabled}
-          options={options.map((option) => option.label)}
-          onChange={onChange}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              error={Boolean(errormsg)}
-              helperText={errormsg}
-              sx={{
-                backgroundColor: !disabled ? 'rgba(0, 0, 0, 0.1)' : 'transparent',
-                '& .MuiInputBase-root.Mui-disabled': {
-                  backgroundColor: 'rgba(0, 0, 0, 0.1)'
-                }
-              }}
-            />
-          )}
-          disableClearable={isSelect}
-        />
-      </Box>
-    </FormControl>
+    <Wrapper>
+      {label && <span className="font-base text-sm">{label}</span>}
+      <Autocomplete
+        {...props}
+        disabled={disabled}
+        options={options}
+        value={value}
+        getOptionLabel={(option) => option.label}
+        onChange={onChange}
+        renderInput={(params) => <StyledTextField {...params} error={error} placeholder="Select" />}
+        fullWidth
+      />
+      {helperText && <StyledHelperText>{helperText}</StyledHelperText>}
+    </Wrapper>
   );
 };
 

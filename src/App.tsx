@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Date, Dropdown, Logo, OtpInput, PasswordInput, Radio, TextField } from 'ui-library';
+import { Button, Checkbox, Dropdown, Logo, OtpInput, PasswordInput, Radio, TextField } from 'ui-library';
 import TextArea from 'ui-library/components/TextArea';
 import SearchBar from 'ui-library/components/Search';
 import OtpAuthPage, { IOtpAuthPageProps } from 'ui-library/pages/OtpAuthPage';
@@ -11,11 +11,13 @@ import TabsComponent from 'ui-library/components/Tabs';
 import AvatarComponent from 'ui-library/components/Avatar';
 import Switch from 'ui-library/components/Switch';
 import Table from 'ui-library/components/Table';
+import JsonForm from 'ui-library/components/JsonForm';
+import jsonData from './data/sampleForm.json';
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
   const [textFieldError, setTextFieldError] = useState('');
-  const [dropdownValue, setDropdownValue] = useState<string | null>(null);
+  const [dropdownValue, setDropdownValue] = useState<{ label: string; value: string } | null>(null);
   const [dropdownError, setDropdownError] = useState('');
   const [textAreaValue, setTextAreaValue] = useState('');
   const [textAreaError, setTextAreaError] = useState('');
@@ -24,7 +26,7 @@ const App: React.FC = () => {
   const [passwordError, setPasswordError] = useState('');
   const [otp, setOtp] = useState('');
   const [otpError, setOtpError] = useState(false);
-  const [flag, setFlag] = useState(true);
+  const [flag, setFlag] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string>('option1');
 
   const options: RadioOption[] = [
@@ -46,7 +48,8 @@ const App: React.FC = () => {
     }
   };
 
-  const handleDropdownChange = (event: any, newValue: string | null) => {
+  const handleDropdownChange = (_event: any, newValue: { label: string; value: string } | null) => {
+    console.log(newValue);
     setDropdownValue(newValue);
     if (newValue === null) {
       setDropdownError('This field is required');
@@ -165,26 +168,25 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="bg-red-50">
       <div className="App">
-        <h1>Textfield example</h1>
-        <TextField label="Example Label" value={textFieldValue} onChange={handleTextFieldChange} errormsg={textFieldError} disabled={true} />
-      </div>
-      <div className="App">
-        <h1>Dropdown example</h1>
-        <Dropdown
-          label="Example Dropdown"
-          value={dropdownValue}
-          onChange={handleDropdownChange}
-          errormsg={dropdownError}
-          disabled={flag}
-          options={dropdownOptions}
-          isSelect={true} // Set to true for select-like behavior
+        <TextField
+          label="Example TextField"
+          value={textFieldValue}
+          onChange={handleTextFieldChange}
+          error={!!textFieldError}
+          helperText={textFieldError ? 'This field is required' : ''}
+          variant="outlined"
         />
       </div>
       <div className="App">
         <h1>Textarea example</h1>
-        <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} errormsg={textAreaError} disabled={true} />
+        <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} error={false} disabled={true} />
+      </div>
+      <div className="App">
+        <h1>Checkbox example</h1>
+        <Checkbox label="Option 1" className="pangea-blue-100" />
+        <Checkbox label="Option 2" className="bg-pangea-blue-100" />
       </div>
       <div className="App">
         <h1>Searchbar example</h1>
@@ -247,11 +249,15 @@ const App: React.FC = () => {
         <SsoAuthPage {...ssoAuthPageProps} />
       </div>
       <div className="App">
-        <h1>Erro page example</h1>
+        <h1>Error page example</h1>
         <ErrorPage errorMessage="Failed to load data." onRefresh={handleRefresh} />
       </div>
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
       <Switch label="On" checked={flag} onChange={toggleFlag} switchBgColor="" disabled={false} value={flag} isLeftLabel={true} leftlabel="Off" />
+      <div className="App w-80 px-12 mx-auto border-4 border-red-700 bg-slate-100">
+        <h1 className="font-sans text-3xl text-center">Json Form example</h1>
+        <JsonForm onSubmit={(data) => console.log('submitted', data)} jsonData={jsonData} />
+      </div>
     </div>
   );
 };

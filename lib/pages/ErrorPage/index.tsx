@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Typography } from '@mui/material';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import { Button } from 'pangea_ui_library';
+import { Button } from 'ui-library';
 
 export interface ErrorPageProps {
   errorMessage: string;
