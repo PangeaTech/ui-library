@@ -186,7 +186,7 @@ const App: React.FC = () => {
       <div className="App">
         <h1>Checkbox example</h1>
         <Checkbox label="Option 1" className="pangea-blue-100" />
-        <Checkbox label="Option 2" className="bg-pangea-blue-100" />
+        <Checkbox label="Option 2" className="pangea-blue-100" />
       </div>
       <div className="App">
         <h1>Searchbar example</h1>
