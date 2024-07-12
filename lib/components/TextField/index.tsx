@@ -12,6 +12,7 @@ interface ITextFieldProps extends Omit<TextFieldProps, 'onChange'> {
   readOnly?: boolean;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
+  className?: string; // Add className prop
 }
 
 export const Wrapper = styled('div')({
@@ -49,6 +50,14 @@ export const StyledTextField = styled((props: ITextFieldProps) => <MuiTextField 
   },
   '& .MuiOutlinedInput-notchedOutline': {
     border: 'none'
+  },
+  // Add support for className prop
+  '& .custom-class': {
+    // Define custom styles here
+    // Example:
+    backgroundColor: 'lightblue',
+    borderRadius: '12px',
+    padding: '12px'
   }
 }));
 
@@ -98,6 +107,7 @@ const TextField: React.FC<ITextFieldProps> = ({
   readOnly = false,
   startIcon,
   endIcon,
+  className, // Accept className prop
   ...props
 }) => {
   return (
@@ -105,6 +115,7 @@ const TextField: React.FC<ITextFieldProps> = ({
       {label && <span className="font-base text-sm">{label}</span>}
       <StyledTextField
         {...props}
+        className={`custom-class ${className ?? ''}`} // Apply custom class and user-provided className
         error={error}
         onChange={onChange}
         disabled={disabled}
