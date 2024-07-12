@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField as MuiTextField, InputLabel, FormHelperText, InputAdornment, TextFieldProps } from '@mui/material';
+import { TextField as MuiTextField, FormHelperText, InputAdornment, TextFieldProps } from '@mui/material';
 import { styled } from '@mui/system';
 import '../../../src/index.css';
 
@@ -22,29 +22,6 @@ export const Wrapper = styled('div')({
   gap: '4px',
   width: '100%',
   maxWidth: '326px'
-});
-
-export const LabelWrapper = styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  padding: '0px 10px 0px 0px',
-  gap: '4px',
-  width: '100%',
-  maxWidth: '326px',
-  height: '12px'
-});
-
-export const StyledInputLabel = styled(InputLabel)({
-  width: '100%',
-  maxWidth: '248px',
-  height: '28px',
-  fontStyle: 'normal',
-  fontWeight: 400,
-  fontSize: '14px',
-  display: 'flex',
-  alignItems: 'center',
-  color: '#262626'
 });
 
 export const StyledTextField = styled((props: ITextFieldProps) => <MuiTextField {...props} />)(({ disabled, readOnly, error }) => ({
