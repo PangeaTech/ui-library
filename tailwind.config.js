@@ -1,10 +1,34 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  corePlugins: {
-    preflight: false
-  },
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './lib/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    /*    // Test and apply default classes first
+  fontSize: {
+      xs: '12pt',
+      sm: '14pt',
+      base: '16pt',
+      md: '18pt',
+      lg: '20pt',
+      xl: '24pt',
+      '2xl': '30pt',
+      '3xl': '36pt',
+      '4xl': '48pt',
+      '5xl': '60pt',
+      '6xl': '72pt',
+    },
+    lineHeight: {
+      xs: '12pt',
+      sm: '14pt',
+      base: '16pt',
+      md: '18pt',
+      lg: '20pt',
+      xl: '24pt',
+      '2xl': '30pt',
+      '3xl': '36pt',
+      '4xl': '40pt',
+      '5xl': '60pt',
+      '6xl': '60pt',
+    }, */
     extend: {
       colors: {
         pangea: {
@@ -44,26 +68,6 @@ export default {
             15: '#DAD7D6',
             5: '#F4F4F4'
           }
-        }
-      },
-      backgroundColor: {
-        pangea: {
-          blue: ['100', '50', '15', '5'],
-          green: ['100', '50', '15', '5'],
-          pink: ['100', '50', '15', '5'],
-          purple: ['100', '50', '15', '5'],
-          gold: ['100', '50', '15', '5'],
-          black: ['100', '50', '15', '5']
-        }
-      },
-      borderColor: {
-        pangea: {
-          blue: ['100', '50', '15', '5'],
-          green: ['100', '50', '15', '5'],
-          pink: ['100', '50', '15', '5'],
-          purple: ['100', '50', '15', '5'],
-          gold: ['100', '50', '15', '5'],
-          black: ['100', '50', '15', '5']
         }
       }
     }
