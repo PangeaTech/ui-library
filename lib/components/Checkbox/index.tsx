@@ -4,8 +4,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import { styled } from '@mui/system';
 import CheckIcon from '@mui/icons-material/Check';
-import { colorClasses, ColorClassName } from '../../themeConfig';
-
+import { ColorClassName, colorClasses } from 'ui-library/themeConfig';
 export interface ICheckboxProps extends CheckboxProps {
   disabled?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -13,7 +12,7 @@ export interface ICheckboxProps extends CheckboxProps {
   required?: boolean;
   label: string;
   labelPlacement?: 'end' | 'start' | 'top' | 'bottom';
-  className?: ColorClassName;
+  checkboxColor?: ColorClassName;
 }
 
 const StyledFormControlLabel = styled(FormControlLabel)(() => ({
@@ -34,8 +33,16 @@ const StyledFormControlLabel = styled(FormControlLabel)(() => ({
     color: '#0F0F0F'
   }
 }));
-
-const StyledCheckbox = styled(MuiCheckbox)(({}) => ({
+const getColorClassName = (checkboxColor?: ColorClassName, isBgColor?: boolean) => {
+  if (isBgColor) {
+    return colorClasses[checkboxColor as ColorClassName] + '30'; // pass opacity to background color
+  }
+  if (checkboxColor) {
+    return colorClasses[checkboxColor];
+  }
+  return '#2D35DC';
+};
+const StyledCheckbox = styled((props: ICheckboxProps) => <MuiCheckbox {...props} />)(({ checkboxColor }) => ({
   boxSizing: 'border-box',
   width: '20px',
   height: '20px',
@@ -48,11 +55,12 @@ const StyledCheckbox = styled(MuiCheckbox)(({}) => ({
   justifyContent: 'center',
   alignItems: 'center',
   '&.Mui-checked': {
-    backgroundColor: '#DFE0FF',
-    border: '1px solid #2D35DC',
+    // pass opacity to background color
+    backgroundColor: getColorClassName(checkboxColor, true),
+    border: `1px solid ${getColorClassName(checkboxColor)}`,
     '& .MuiSvgIcon-root': {
       display: 'block',
-      color: '#2D35DC'
+      color: `${getColorClassName(checkboxColor)}`
     }
   },
   '& .MuiSvgIcon-root': {
@@ -70,7 +78,16 @@ const StyledCheckbox = styled(MuiCheckbox)(({}) => ({
   }
 }));
 
-const Checkbox: React.FC<ICheckboxProps> = ({ disabled, onChange, checked = false, required = false, label, labelPlacement, className }) => {
+const Checkbox: React.FC<ICheckboxProps> = ({
+  disabled,
+  onChange,
+  checked = false,
+  required = false,
+  label,
+  labelPlacement,
+  className,
+  checkboxColor
+}) => {
   return (
     <FormGroup>
       <StyledFormControlLabel
@@ -78,7 +95,9 @@ const Checkbox: React.FC<ICheckboxProps> = ({ disabled, onChange, checked = fals
         labelPlacement={labelPlacement}
         control={
           <StyledCheckbox
-            className={className ? colorClasses[className] : ''}
+            label=""
+            checkboxColor={checkboxColor}
+            className={className}
             disabled={disabled}
             onChange={onChange}
             checked={checked}

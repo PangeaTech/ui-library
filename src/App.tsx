@@ -173,7 +173,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className=" bg-pangea-purple-5">
+    <div className="  pl-6">
       <div className="App">
         <TextField
           label="Example TextField"
@@ -190,8 +190,8 @@ const App: React.FC = () => {
       </div>
       <div className="App">
         <h1>Checkbox example</h1>
-        <Checkbox label="Option 1" className="pangea-blue-100" onChange={toggleFlag} checked={flag} />
-        <Checkbox label="Option 2" className="pangea-blue-100" />
+        <Checkbox label="Option 1" onChange={toggleFlag} checked={flag} />
+        <Checkbox label="Option 2" />
       </div>
       <div className="App">
         <h1>Searchbar example</h1>

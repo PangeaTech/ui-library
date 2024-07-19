@@ -2,7 +2,6 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { default as MuiSlider, SliderProps } from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
-import { useState } from 'react';
 
 export interface ISliderProps extends SliderProps {
   label?: string;
