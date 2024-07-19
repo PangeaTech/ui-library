@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Checkbox, Dropdown, Logo, OtpInput, PasswordInput, Radio, TextField } from 'ui-library';
+import { Button, Checkbox, Dropdown, Logo, OtpInput, PasswordInput, Radio, TextField, Slider } from 'ui-library';
 import TextArea from 'ui-library/components/TextArea';
 import SearchBar from 'ui-library/components/Search';
 import OtpAuthPage, { IOtpAuthPageProps } from 'ui-library/pages/OtpAuthPage';
@@ -224,8 +224,8 @@ const App: React.FC = () => {
       </div>
       <div className="App">
         <h1>Avatar Example</h1>
-        <AvatarComponent alt="John Doe" initials="JD" size="small" />
-        <AvatarComponent alt="Jane Doe" src="https://example.com/avatar.jpg" size="large" />
+        <AvatarComponent alt="John Doe" initials="JD" />
+        <AvatarComponent alt="Jane Doe" src="https://example.com/avatar.jpg" />
         <AvatarComponent alt="No Avatar" size={80} />
       </div>
       <div className="App">
@@ -251,6 +251,10 @@ const App: React.FC = () => {
       <div className="App">
         <h1>Error page example</h1>
         <ErrorPage errorMessage="Failed to load data." onRefresh={handleRefresh} />
+      </div>
+      <div className="App max-w-60 ml-6">
+        <h1>Slider example</h1>
+        <Slider />
       </div>
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
       <Switch label="On" checked={flag} onChange={toggleFlag} switchBgColor="" disabled={false} value={flag} isLeftLabel={true} leftlabel="Off" />
