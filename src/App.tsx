@@ -28,6 +28,7 @@ const App: React.FC = () => {
   const [otpError, setOtpError] = useState(false);
   const [flag, setFlag] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string>('option1');
+  const [sliderValue, setSliderValue] = useState<number | number[]>([20, 40]);
 
   const options: RadioOption[] = [
     { label: 'Option 1', value: 'option1' },
@@ -56,6 +57,10 @@ const App: React.FC = () => {
     } else {
       setDropdownError('');
     }
+  };
+
+  const handleSliderChange = (event: Event, newValue: number | number[]) => {
+    setSliderValue(newValue as number);
   };
 
   const handleTextAreaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -254,7 +259,7 @@ const App: React.FC = () => {
       </div>
       <div className="App max-w-60 ml-6">
         <h1>Slider example</h1>
-        <Slider />
+        <Slider onChange={handleSliderChange} value={sliderValue} />
       </div>
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
       <Switch label="On" checked={flag} onChange={toggleFlag} switchBgColor="" disabled={false} value={flag} isLeftLabel={true} leftlabel="Off" />

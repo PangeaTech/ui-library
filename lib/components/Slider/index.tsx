@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import { useState } from 'react';
 
 export interface ISliderProps extends SliderProps {
+  label?: string;
   leftIcon?: JSX.Element;
   rightIcon?: JSX.Element;
   disabled?: boolean;
@@ -57,17 +58,12 @@ const CustomSlider = styled((props: ISliderProps) => <MuiSlider {...props} />)(
   })
 );
 export const Slider: React.FC<ISliderProps> = ({ leftIcon, rightIcon, disabled, ...props }) => {
-  const [value, setValue] = useState<number>(30);
-
-  const handleChange = (_event: Event, newValue: number | number[]) => {
-    setValue(newValue as number);
-  };
-
   return (
     <Box>
+      {props.label && <span className="font-base text-sm">{props.label}</span>}
       <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
         {leftIcon}
-        <CustomSlider valueLabelDisplay="auto" {...props} value={value} onChange={handleChange} disabled={disabled} />
+        <CustomSlider valueLabelDisplay="auto" {...props} disabled={disabled} />
         {rightIcon}
       </Stack>
     </Box>
