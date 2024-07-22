@@ -63,6 +63,23 @@ const OtpInput: React.FC<IOtpInputProps> = ({ length, onChange, label, disabled 
     }
   };
 
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const pastedData = e.clipboardData.getData('text/plain').trim();
+    const newOtpValues = [...otpValues];
+
+    for (let i = 0; i < pastedData.length && i < length; i++) {
+      if (/^\d+$/.test(pastedData[i])) {
+        newOtpValues[i] = pastedData[i];
+      } else {
+        setErrorText('Please enter numbers only.');
+        return;
+      }
+    }
+
+    setOtpValues(newOtpValues);
+  };
+
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <label>{label}</label>
@@ -73,6 +90,7 @@ const OtpInput: React.FC<IOtpInputProps> = ({ length, onChange, label, disabled 
             value={digit}
             onChange={(e) => handleChange(e, index)}
             onKeyDown={(e) => handleKeyDown(e, index)}
+            onPaste={handlePaste}
             inputProps={{
               maxLength: 1,
               style: { textAlign: 'center' }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField as MuiTextField, InputLabel, FormHelperText, InputAdornment, TextFieldProps } from '@mui/material';
+import { TextField as MuiTextField, FormHelperText, InputAdornment, TextFieldProps } from '@mui/material';
 import { styled } from '@mui/system';
 import '../../../src/index.css';
 
@@ -12,6 +12,7 @@ interface ITextFieldProps extends Omit<TextFieldProps, 'onChange'> {
   readOnly?: boolean;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
+  className?: string; // Add className prop
 }
 
 export const Wrapper = styled('div')({
@@ -22,29 +23,6 @@ export const Wrapper = styled('div')({
   gap: '4px',
   width: '100%',
   maxWidth: '326px'
-});
-
-export const LabelWrapper = styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  padding: '0px 10px 0px 0px',
-  gap: '4px',
-  width: '100%',
-  maxWidth: '326px',
-  height: '12px'
-});
-
-export const StyledInputLabel = styled(InputLabel)({
-  width: '100%',
-  maxWidth: '248px',
-  height: '28px',
-  fontStyle: 'normal',
-  fontWeight: 400,
-  fontSize: '14px',
-  display: 'flex',
-  alignItems: 'center',
-  color: '#262626'
 });
 
 export const StyledTextField = styled((props: ITextFieldProps) => <MuiTextField {...props} />)(({ disabled, readOnly, error }) => ({
@@ -72,6 +50,14 @@ export const StyledTextField = styled((props: ITextFieldProps) => <MuiTextField 
   },
   '& .MuiOutlinedInput-notchedOutline': {
     border: 'none'
+  },
+  // Add support for className prop
+  '& .custom-class': {
+    // Define custom styles here
+    // Example:
+    backgroundColor: 'lightblue',
+    borderRadius: '12px',
+    padding: '12px'
   }
 }));
 
@@ -121,6 +107,7 @@ const TextField: React.FC<ITextFieldProps> = ({
   readOnly = false,
   startIcon,
   endIcon,
+  className, // Accept className prop
   ...props
 }) => {
   return (
@@ -128,6 +115,7 @@ const TextField: React.FC<ITextFieldProps> = ({
       {label && <span className="font-base text-sm">{label}</span>}
       <StyledTextField
         {...props}
+        className={`custom-class ${className ?? ''}`}
         error={error}
         onChange={onChange}
         disabled={disabled}

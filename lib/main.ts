@@ -20,3 +20,5 @@ export { default as Logo } from './components/Logo';
 export { default as Date } from './components/Date';
 export { default as Table } from './components/Table';
 export { default as JsonForm } from './components/JsonForm';
+export { colorClasses, typographyClasses } from './themeConfig';
+export { default as Slider } from './components/Slider';
