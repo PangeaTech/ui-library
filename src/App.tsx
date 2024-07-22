@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Checkbox, Dropdown, Logo, OtpInput, PasswordInput, Radio, TextField } from 'ui-library';
+import { Button, Checkbox, Dropdown, Logo, OtpInput, PasswordInput, Radio, TextField, Slider } from 'ui-library';
 import TextArea from 'ui-library/components/TextArea';
 import SearchBar from 'ui-library/components/Search';
 import OtpAuthPage, { IOtpAuthPageProps } from 'ui-library/pages/OtpAuthPage';
@@ -28,6 +28,7 @@ const App: React.FC = () => {
   const [otpError, setOtpError] = useState(false);
   const [flag, setFlag] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string>('option1');
+  const [sliderValue, setSliderValue] = useState<number | number[]>([20, 40]);
 
   const options: RadioOption[] = [
     { label: 'Option 1', value: 'option1' },
@@ -56,6 +57,10 @@ const App: React.FC = () => {
     } else {
       setDropdownError('');
     }
+  };
+
+  const handleSliderChange = (event: Event, newValue: number | number[]) => {
+    setSliderValue(newValue as number);
   };
 
   const handleTextAreaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -168,7 +173,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="bg-red-50">
+    <div className="  pl-6">
       <div className="App">
         <TextField
           label="Example TextField"
@@ -179,14 +184,14 @@ const App: React.FC = () => {
           variant="outlined"
         />
       </div>
-      <div className="App">
+      <div className="App text-xs">
         <h1>Textarea example</h1>
         <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} error={false} disabled={true} />
       </div>
       <div className="App">
         <h1>Checkbox example</h1>
-        <Checkbox label="Option 1" className="pangea-blue-100" />
-        <Checkbox label="Option 2" className="bg-pangea-blue-100" />
+        <Checkbox label="Option 1" onChange={toggleFlag} checked={flag} />
+        <Checkbox label="Option 2" />
       </div>
       <div className="App">
         <h1>Searchbar example</h1>
@@ -224,8 +229,8 @@ const App: React.FC = () => {
       </div>
       <div className="App">
         <h1>Avatar Example</h1>
-        <AvatarComponent alt="John Doe" initials="JD" size="small" />
-        <AvatarComponent alt="Jane Doe" src="https://example.com/avatar.jpg" size="large" />
+        <AvatarComponent alt="John Doe" initials="JD" />
+        <AvatarComponent alt="Jane Doe" src="https://example.com/avatar.jpg" />
         <AvatarComponent alt="No Avatar" size={80} />
       </div>
       <div className="App">
@@ -252,9 +257,13 @@ const App: React.FC = () => {
         <h1>Error page example</h1>
         <ErrorPage errorMessage="Failed to load data." onRefresh={handleRefresh} />
       </div>
+      <div className="App max-w-60 ml-6">
+        <h1>Slider example</h1>
+        <Slider onChange={handleSliderChange} value={sliderValue} />
+      </div>
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
       <Switch label="On" checked={flag} onChange={toggleFlag} switchBgColor="" disabled={false} value={flag} isLeftLabel={true} leftlabel="Off" />
-      <div className="App w-80 px-12 mx-auto border-4 border-red-700 bg-slate-100">
+      <div className="App w-80 px-12 mx-auto border-2 bg-slate-100">
         <h1 className="font-sans text-3xl text-center">Json Form example</h1>
         <JsonForm onSubmit={(data) => console.log('submitted', data)} jsonData={jsonData} />
       </div>

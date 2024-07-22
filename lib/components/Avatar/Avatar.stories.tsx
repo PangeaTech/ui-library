@@ -1,13 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import Avatar from './index';
 
 const meta = {
   title: 'Components/Avatar',
   component: Avatar,
   argTypes: {
-    size: { control: 'text' },
-    initials: { control: 'text' }
+    size: {
+      control: {
+        type: 'select',
+        options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', 24, 32, 40, 48, 56, 64]
+      }
+    },
+    initials: { control: 'text' },
+    image: { control: 'text' },
+    online: { control: 'boolean' }
   }
 } satisfies Meta<typeof Avatar>;
 
@@ -17,15 +23,31 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    alt: 'SR',
-    size: 'medium'
+    size: 'md',
+    online: false
   }
 };
 
 export const WithInitials: Story = {
   args: {
-    alt: 'SR',
-    size: 'small',
-    initials: 'SR'
+    size: 'md',
+    initials: 'SR',
+    online: false
+  }
+};
+
+export const WithImage: Story = {
+  args: {
+    size: 'md',
+    image: 'https://via.placeholder.com/40',
+    online: false
+  }
+};
+
+export const OnlineStatus: Story = {
+  args: {
+    size: 'md',
+    initials: 'SR',
+    online: true
   }
 };
