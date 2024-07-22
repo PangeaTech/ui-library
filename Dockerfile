@@ -8,13 +8,13 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # Install dependencies
-# RUN npm install
+RUN npm install
 
 # Copy the rest of the application code to the container
 COPY . .
 
 # Build the project (includes building Storybook)
-RUN npm build-storybook:css
+RUN npm run build-storybook:css
 
 RUN npm run build-storybook
 
