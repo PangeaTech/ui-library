@@ -243,7 +243,7 @@ button,
 input:where([type='button']),
 input:where([type='reset']),
 input:where([type='submit']) {
-  -webkit-appearance: button;
+  /* -webkit-appearance: button; */
   /* 1 */
   background-color: transparent;
   /* 2 */
@@ -290,7 +290,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 */
 
 [type='search'] {
-  -webkit-appearance: textfield;
+  /* -webkit-appearance: textfield; */
   /* 1 */
   outline-offset: -2px;
   /* 2 */
@@ -430,7 +430,7 @@ embed,
 object {
   display: block;
   /* 1 */
-  vertical-align: middle;
+  /* vertical-align: middle; */
   /* 2 */
 }
 
@@ -582,14 +582,6 @@ body :is(.left-0){
   left: 0px;
 }
 
-body :is(.left-2\/4){
-  left: 50%;
-}
-
-body :is(.top-2\/4){
-  top: 50%;
-}
-
 body :is(.z-10){
   z-index: 10;
 }
@@ -698,41 +690,6 @@ body :is(.border-\[2px\]){
   border-width: 2px;
 }
 
-body :is(.border-pangea-blue-100){
-  --tw-border-opacity: 1;
-  border-color: rgb(42 49 138 / var(--tw-border-opacity));
-}
-
-body :is(.border-pangea-blue-15){
-  --tw-border-opacity: 1;
-  border-color: rgb(131 136 244 / var(--tw-border-opacity));
-}
-
-body :is(.border-pangea-blue-50){
-  --tw-border-opacity: 1;
-  border-color: rgb(45 53 220 / var(--tw-border-opacity));
-}
-
-body :is(.bg-pangea-blue-100){
-  --tw-bg-opacity: 1;
-  background-color: rgb(42 49 138 / var(--tw-bg-opacity));
-}
-
-body :is(.bg-pangea-blue-15){
-  --tw-bg-opacity: 1;
-  background-color: rgb(131 136 244 / var(--tw-bg-opacity));
-}
-
-body :is(.bg-pangea-blue-50){
-  --tw-bg-opacity: 1;
-  background-color: rgb(45 53 220 / var(--tw-bg-opacity));
-}
-
-body :is(.bg-pangea-purple-5){
-  --tw-bg-opacity: 1;
-  background-color: rgb(230 215 255 / var(--tw-bg-opacity));
-}
-
 body :is(.bg-slate-100){
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
@@ -746,6 +703,10 @@ body :is(.px-12){
 body :is(.py-1){
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+}
+
+body :is(.pl-6){
+  padding-left: 1.5rem;
 }
 
 body :is(.text-center){
