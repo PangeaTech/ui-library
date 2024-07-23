@@ -34,18 +34,19 @@ const IOSSwitch = styled((props: CustomSwitchProps) => <MuiSwitch focusVisibleCl
           border: 0
         },
         '& .MuiSwitch-thumb': {
-          color: '#FFFFFF',
-          border: `6px solid ${switchBgColor || '#2D35DC'}`
+          color: '#FFFFFF'
         },
         '&.Mui-disabled + .MuiSwitch-track': {
-          opacity: 0.5
+          // opacity: 0.5,
+          backgroundColor: '#DFE0FF'
         }
       }
     },
     '& .MuiSwitch-thumb': {
       boxSizing: 'border-box',
       width: 20,
-      height: 20
+      height: 20,
+      backgroundColor: '#FFFFFF'
     },
     '& .MuiSwitch-track': {
       borderRadius: 13,
