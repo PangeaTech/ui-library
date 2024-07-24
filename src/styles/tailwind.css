@@ -582,6 +582,14 @@ body :is(.left-0){
   left: 0px;
 }
 
+body :is(.left-2\/4){
+  left: 50%;
+}
+
+body :is(.top-2\/4){
+  top: 50%;
+}
+
 body :is(.z-10){
   z-index: 10;
 }
