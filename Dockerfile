@@ -14,6 +14,8 @@ RUN npm install
 COPY . .
 
 # Build the project (includes building Storybook)
+RUN npm run build-storybook:css
+
 RUN npm run build-storybook
 
 # Stage 2: Serve with Nginx
