@@ -101,7 +101,6 @@ const App: React.FC = () => {
   };
 
   const otpAuthPageProps: IOtpAuthPageProps = {
-    fields: [{ label: 'Email', type: 'email' }],
     logoUrl: 'https://via.placeholder.com/150',
     onSendOtp: (email: string) => {
       console.log(`OTP sent to ${email}`);
@@ -121,8 +120,7 @@ const App: React.FC = () => {
   };
 
   const authPageProps: IAuthPageProps = {
-    mode: 'forgotPassword', // Change this to "signup" or "forgotPassword" as needed
-    logoUrl: 'https://via.placeholder.com/150',
+    mode: 'login', // Change this to "signup" or "forgotPassword" as needed
     onSubmit: handleAuthSubmit
   };
 

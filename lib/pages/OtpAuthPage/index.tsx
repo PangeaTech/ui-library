@@ -1,30 +1,52 @@
 import { Button, OtpInput, TextField } from 'ui-library';
 import React, { useState } from 'react';
-
-interface Field {
-  label: string;
-  type: string;
-}
+import { isValidEmailInput } from 'ui-library/utils/functions';
 
 export interface IOtpAuthPageProps {
-  fields: Field[];
   logoUrl: string;
   onSendOtp: (email: string) => boolean;
   onVerifyOtp: (otp: string) => boolean;
 }
 
-const OtpAuthPage: React.FC<IOtpAuthPageProps> = ({ fields, logoUrl, onSendOtp, onVerifyOtp }) => {
+type ErrorType = {
+  message: string;
+  isError: boolean;
+};
+const OtpAuthPage: React.FC<IOtpAuthPageProps> = ({ logoUrl, onSendOtp, onVerifyOtp }) => {
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
-  const [flag] = useState(true);
+  const [errors, setErrors] = useState<ErrorType>({ message: '', isError: false });
 
   const generateDummyOtp = () => {
     const dummyOtp = Math.floor(100000 + Math.random() * 900000).toString(); // Generate a 6-digit random OTP
     setOtp(dummyOtp);
   };
 
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+    if (!errors.isError) {
+      return;
+    }
+    if (!isValidEmailInput(event.target.value)) {
+      setErrors({
+        message: 'Please enter a valid email address',
+        isError: true
+      });
+    } else {
+      setErrors({
+        message: '',
+        isError: false
+      });
+    }
+  };
+
   const handleSendOtp = () => {
+    const isValid = isValidEmailInput(email);
+    setErrors({ message: isValid ? '' : 'Please enter a valid email address', isError: !isValid });
+    if (!isValid) {
+      return;
+    }
     if (onSendOtp(email)) {
       generateDummyOtp();
       setOtpSent(true);
@@ -37,13 +59,32 @@ const OtpAuthPage: React.FC<IOtpAuthPageProps> = ({ fields, logoUrl, onSendOtp, 
       console.log('OTP verified successfully');
       // Proceed with navigation or other actions upon successful OTP verification
     } else {
-      console.log('Invalid OTP');
+      alert('Invalid OTP');
     }
   };
 
+  const renderHeader = () => {
+    if (otpSent) {
+      return (
+        <div>
+          <p className="text-center">
+            Enter the OTP sent to <span className="font-semibold">{email}</span>
+          </p>
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        <p className="">Enter your Email address</p>
+      </div>
+    );
+  };
+
   return (
-    <div className="w-vw h-vh flex flex-col justify-center items-center border-[2px] border-spacing-2">
-      <img src={logoUrl} alt="Logo" className="mb-4" />
+    <div className="flex flex-col justify-center items-center border space-y-2">
+      {/* <img src={logoUrl} alt="Logo" className="mb-2" /> */}
+      {renderHeader()}
       {otpSent ? (
         <>
           <OtpInput
@@ -52,27 +93,15 @@ const OtpAuthPage: React.FC<IOtpAuthPageProps> = ({ fields, logoUrl, onSendOtp, 
               setOtp(otpValue);
             }}
             label="OTP"
-            disabled={!flag}
           />
-          <Button onClick={handleVerifyOtp} variant="contained" color="secondary" className="mt-4">
+          <Button onClick={handleVerifyOtp} variant="contained" color="secondary" className="mt-4" disabled={otp.length !== 6}>
             Verify OTP
           </Button>
         </>
       ) : (
         <>
-          {fields.map((field, index) => (
-            <TextField
-              key={index}
-              label={field.label}
-              type={field.type}
-              value={field.label === 'Email' ? email : ''}
-              onChange={(e) => (field.label === 'Email' ? setEmail(e.target.value) : null)}
-              error={field.label === 'Email' && email === '' ? true : false}
-              helperText="Email is required"
-              disabled={flag}
-            />
-          ))}
-          <Button onClick={handleSendOtp} variant="contained" color="primary">
+          <TextField label="Email" type="email" value={email} onChange={handleEmailChange} error={errors.isError} helperText={errors.message || ''} />
+          <Button onClick={handleSendOtp} variant="contained" color="primary" disabled={email === ''}>
             Send OTP
           </Button>
         </>
