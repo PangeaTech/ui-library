@@ -1,4 +1,4 @@
-import { Button, OtpInput, TextField } from 'ui-library';
+import { Button, JsonForm, OtpInput, TextField } from 'ui-library';
 import React, { useState } from 'react';
 import { isValidEmailInput } from 'ui-library/utils/functions';
 
@@ -16,38 +16,33 @@ const OtpAuthPage: React.FC<IOtpAuthPageProps> = ({ logoUrl, onSendOtp, onVerify
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
-  const [errors, setErrors] = useState<ErrorType>({ message: '', isError: false });
-
+  const emailForm = {
+    fields: [
+      {
+        name: 'email',
+        label: 'Email',
+        type: 'email',
+        required: true,
+        placeholder: 'Enter your Email',
+        componentType: 'textField',
+        rules: {
+          required: 'Please enter your email',
+          pattern: {
+            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            message: 'Invalid email address'
+          }
+        }
+      }
+    ]
+  };
   const generateDummyOtp = () => {
     const dummyOtp = Math.floor(100000 + Math.random() * 900000).toString(); // Generate a 6-digit random OTP
     setOtp(dummyOtp);
   };
 
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-    if (!errors.isError) {
-      return;
-    }
-    if (!isValidEmailInput(event.target.value)) {
-      setErrors({
-        message: 'Please enter a valid email address',
-        isError: true
-      });
-    } else {
-      setErrors({
-        message: '',
-        isError: false
-      });
-    }
-  };
-
-  const handleSendOtp = () => {
-    const isValid = isValidEmailInput(email);
-    setErrors({ message: isValid ? '' : 'Please enter a valid email address', isError: !isValid });
-    if (!isValid) {
-      return;
-    }
-    if (onSendOtp(email)) {
+  const handleSendOtp = (data) => {
+    console.log('data', data);
+    if (onSendOtp(data)) {
       generateDummyOtp();
       setOtpSent(true);
     }
@@ -100,10 +95,11 @@ const OtpAuthPage: React.FC<IOtpAuthPageProps> = ({ logoUrl, onSendOtp, onVerify
         </>
       ) : (
         <>
-          <TextField label="Email" type="email" value={email} onChange={handleEmailChange} error={errors.isError} helperText={errors.message || ''} />
+          <JsonForm jsonData={emailForm} onSubmit={handleSendOtp} submitButtonLabel="Send OTP" />
+          {/* <TextField label="Email" type="email" value={email} onChange={handleEmailChange} error={errors.isError} helperText={errors.message || ''} />
           <Button onClick={handleSendOtp} variant="contained" color="primary" disabled={email === ''}>
             Send OTP
-          </Button>
+          </Button> */}
         </>
       )}
     </div>

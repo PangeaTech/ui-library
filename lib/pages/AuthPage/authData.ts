@@ -7,7 +7,13 @@ export const signUpData = {
       required: true,
       placeholder: 'Enter your Email',
       componentType: 'textField',
-      rules: { required: 'Please enter your email', pattern: { value: {}, message: 'Invalid email address' } }
+      rules: {
+        required: 'Please enter your email',
+        pattern: {
+          value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+          message: 'Invalid email address'
+        }
+      }
     },
     {
       name: 'userName',
@@ -49,7 +55,13 @@ export const loginData = {
       required: true,
       placeholder: 'Enter your Email',
       componentType: 'textField',
-      rules: { required: 'Please enter your email', pattern: { value: {}, message: 'Invalid email address' } }
+      rules: {
+        required: 'Please enter your email',
+        pattern: {
+          value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+          message: 'Invalid email address'
+        }
+      }
     },
     {
       name: 'password',
@@ -73,7 +85,13 @@ const forgetPasswordData = {
       required: true,
       placeholder: 'Enter your Email',
       componentType: 'textField',
-      rules: { required: 'Please enter your email', pattern: { value: {}, message: 'Invalid email address' } }
+      rules: {
+        required: 'Please enter your email',
+        pattern: {
+          value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+          message: 'Invalid email address'
+        }
+      }
     }
   ]
 };
