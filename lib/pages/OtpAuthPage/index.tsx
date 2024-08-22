@@ -1,6 +1,5 @@
-import { Button, JsonForm, OtpInput, TextField } from 'ui-library';
+import { Button, JsonForm, OtpInput } from 'ui-library';
 import React, { useState } from 'react';
-import { isValidEmailInput } from 'ui-library/utils/functions';
 
 export interface IOtpAuthPageProps {
   logoUrl: string;
@@ -8,11 +7,7 @@ export interface IOtpAuthPageProps {
   onVerifyOtp: (otp: string) => boolean;
 }
 
-type ErrorType = {
-  message: string;
-  isError: boolean;
-};
-const OtpAuthPage: React.FC<IOtpAuthPageProps> = ({ logoUrl, onSendOtp, onVerifyOtp }) => {
+const OtpAuthPage: React.FC<IOtpAuthPageProps> = ({ onSendOtp, onVerifyOtp }) => {
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
@@ -40,7 +35,7 @@ const OtpAuthPage: React.FC<IOtpAuthPageProps> = ({ logoUrl, onSendOtp, onVerify
     setOtp(dummyOtp);
   };
 
-  const handleSendOtp = (data) => {
+  const handleSendOtp = (data: any) => {
     if (onSendOtp(data)) {
       generateDummyOtp();
       setEmail(data.email);
