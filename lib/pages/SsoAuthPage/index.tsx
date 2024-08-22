@@ -19,7 +19,7 @@ const SsoAuthPage: React.FC<ISsoAuthPageProps> = ({ buttonLabel, logoUrl, onLogi
   };
 
   return (
-    <div className="w-vw h-vh flex flex-col justify-center items-center border-[2px] border-spacing-2">
+    <div className="w-vw h-vh flex flex-col justify-center items-center">
       <img src={logoUrl} alt="Logo" className="mb-4" />
       <Button onClick={handleLogin} variant="contained" color="primary">
         {buttonLabel}

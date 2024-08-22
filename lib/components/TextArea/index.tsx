@@ -48,7 +48,8 @@ const TextArea: React.FC<ITextAreaProps> = ({
     '& .MuiInputBase-root': {
       backgroundColor: disabled ? '#f5f5f5' : 'white',
       color: disabled ? '#9e9e9e' : 'inherit',
-      minWidth: '236px'
+      minWidth: '236px',
+      maxWidth: '268px'
     },
     textarea: {
       resize: resizable ? 'both' : 'none',

@@ -1,24 +1,27 @@
-import { Button, TextField } from 'ui-library';
-import React, { useState } from 'react';
-
+import { JsonForm } from 'ui-library';
+import React, { useMemo, useState } from 'react';
+import { signUpData, loginData } from './authData';
 export interface IAuthPageProps {
   mode: 'login' | 'signup' | 'forgotPassword';
-  logoUrl: string;
   onSubmit: (data: { [key: string]: string }) => boolean;
 }
 
-const AuthPage: React.FC<IAuthPageProps> = ({ mode, logoUrl, onSubmit }) => {
-  const [formData, setFormData] = useState<{ [key: string]: string }>({});
+const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit }) => {
   const [resetPasswordSent, setResetPasswordSent] = useState(false);
+  const jsonData = useMemo(() => {
+    if (mode === 'signup') {
+      return signUpData;
+    }
+    if (mode === 'login') {
+      return loginData;
+    }
+    return {};
+  }, [mode]);
 
-  const handleChange = (label: string, value: string) => {
-    setFormData({ ...formData, [label]: value });
-  };
-
-  const handleSubmit = () => {
-    if (onSubmit(formData)) {
+  const handleSubmit = (data: any) => {
+    if (onSubmit(data)) {
       if (mode === 'login') {
-        console.log('Login successful');
+        console.log('Login successful', data);
       } else if (mode === 'signup') {
         alert('Sign Up successful');
       } else if (mode === 'forgotPassword') {
@@ -31,50 +34,28 @@ const AuthPage: React.FC<IAuthPageProps> = ({ mode, logoUrl, onSubmit }) => {
     }
   };
 
-  const renderFields = () => {
-    if (mode === 'login') {
-      return [
-        { label: 'Email', type: 'email' },
-        { label: 'Password', type: 'password' }
-      ];
-    } else if (mode === 'signup') {
-      return [
-        { label: 'Email', type: 'email' },
-        { label: 'Username', type: 'text' },
-        { label: 'Password', type: 'password' },
-        { label: 'Confirm Password', type: 'password' }
-      ];
-    } else if (mode === 'forgotPassword') {
-      if (resetPasswordSent) {
-        return [
-          { label: 'New Password', type: 'password' },
-          { label: 'Confirm New Password', type: 'password' }
-        ];
-      } else {
-        return [{ label: 'Email', type: 'email' }];
-      }
-    }
-    return [];
-  };
-
   return (
-    <div className="w-vw h-vh flex flex-col justify-center items-center border-[2px] border-spacing-2">
-      <img src={logoUrl} alt="Logo" className="mb-4" />
-      {renderFields().map((field, index) => (
-        <TextField
-          key={index}
-          label={field.label}
-          type={field.type}
-          value={formData[field.label] || ''}
-          onChange={(e) => handleChange(field.label, e.target.value)}
-          variant="outlined"
-          fullWidth
-          className="mb-6"
-        />
-      ))}
-      <Button onClick={handleSubmit} variant="contained" color="primary">
-        {mode === 'login' ? 'Login' : mode === 'signup' ? 'Sign Up' : resetPasswordSent ? 'Reset Password' : 'Send Reset Link'}
-      </Button>
+    <div className="border-2 space-y-4">
+      <div className="">
+        <h2 className="text-2xl font-semibold">
+          {mode === 'login' ? 'Login' : mode === 'signup' ? 'Sign Up' : resetPasswordSent ? 'Reset Password' : 'Forgot Password'}
+        </h2>
+        <p>
+          {mode === 'login'
+            ? 'Welcome back!'
+            : mode === 'signup'
+              ? 'Create an account'
+              : resetPasswordSent
+                ? 'Enter your new password'
+                : 'Enter your email address'}
+        </p>
+      </div>
+
+      <JsonForm
+        onSubmit={handleSubmit}
+        jsonData={jsonData}
+        submitButtonLabel={mode === 'login' ? 'Login' : mode === 'signup' ? 'Sign Up' : resetPasswordSent ? 'Reset Password' : 'Send Reset Link'}
+      />
     </div>
   );
 };
