@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Checkbox, Dropdown, Logo, OtpInput, PasswordInput, Radio, TextField, Slider } from 'ui-library';
+import { Button, Checkbox, Logo, OtpInput, PasswordInput, Radio, TextField, Slider } from 'ui-library';
 import TextArea from 'ui-library/components/TextArea';
 import SearchBar from 'ui-library/components/Search';
 import OtpAuthPage, { IOtpAuthPageProps } from 'ui-library/pages/OtpAuthPage';
@@ -101,7 +101,6 @@ const App: React.FC = () => {
   };
 
   const otpAuthPageProps: IOtpAuthPageProps = {
-    fields: [{ label: 'Email', type: 'email' }],
     logoUrl: 'https://via.placeholder.com/150',
     onSendOtp: (email: string) => {
       console.log(`OTP sent to ${email}`);
@@ -121,8 +120,7 @@ const App: React.FC = () => {
   };
 
   const authPageProps: IAuthPageProps = {
-    mode: 'forgotPassword', // Change this to "signup" or "forgotPassword" as needed
-    logoUrl: 'https://via.placeholder.com/150',
+    mode: 'signup', // Change this to "signup" or "forgotPassword" as needed
     onSubmit: handleAuthSubmit
   };
 
@@ -186,7 +184,7 @@ const App: React.FC = () => {
       </div>
       <div className="App text-xs">
         <h1>Textarea example</h1>
-        <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} error={false} disabled={true} />
+        <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} error={false} disabled={false} />
       </div>
       <div className="App">
         <h1>Checkbox example</h1>

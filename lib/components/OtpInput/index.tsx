@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, ChangeEvent, KeyboardEvent } from 'react';
-import TextField from '@mui/material/TextField';
+import { TextField } from 'ui-library';
 import Box from '@mui/material/Box';
+import { styled } from '@mui/system';
 
 interface IOtpInputProps {
   length: number;
@@ -8,6 +9,42 @@ interface IOtpInputProps {
   label: string;
   disabled?: boolean;
 }
+
+const OtpBox = styled(Box)({
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '10px',
+  marginTop: '10px'
+});
+
+const OtpInputBox = styled(TextField)(({ disabled }) => ({
+  '& .MuiInputBase-input': {
+    textAlign: 'center',
+    fontSize: '18px',
+    padding: '10px',
+    width: '32px',
+    height: '40px'
+  },
+  '& .MuiOutlinedInput-root': {
+    borderRadius: '8px',
+    backgroundColor: disabled ? '#f5f5f5' : '#f0f0f0',
+    border: `1px solid ${disabled ? '#d0d0d0' : '#d0d0d0'}`,
+    color: disabled ? '#a0a0a0' : 'inherit',
+    '&.Mui-focused fieldset': {
+      borderColor: disabled ? '#d0d0d0' : '#3f51b5'
+    },
+    '&:hover fieldset': {
+      borderColor: disabled ? '#d0d0d0' : '#3f51b5'
+    }
+  }
+}));
+
+const ErrorText = styled('p')({
+  color: 'red',
+  marginTop: '8px',
+  fontSize: '14px',
+  textAlign: 'center'
+});
 
 const OtpInput: React.FC<IOtpInputProps> = ({ length, onChange, label, disabled = false }) => {
   const [otpValues, setOtpValues] = useState<string[]>(Array(length).fill(''));
@@ -83,28 +120,23 @@ const OtpInput: React.FC<IOtpInputProps> = ({ length, onChange, label, disabled 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <label>{label}</label>
-      <Box display="flex" justifyContent="center">
+      <OtpBox>
         {otpValues.map((digit, index) => (
-          <TextField
+          <OtpInputBox
             key={index}
             value={digit}
             onChange={(e) => handleChange(e, index)}
             onKeyDown={(e) => handleKeyDown(e, index)}
             onPaste={handlePaste}
             inputProps={{
-              maxLength: 1,
-              style: { textAlign: 'center' }
+              maxLength: 1
             }}
             disabled={disabled}
             inputRef={(el) => (inputsRef.current[index] = el as HTMLInputElement)}
-            sx={{
-              width: '40px',
-              margin: '0 5px'
-            }}
           />
         ))}
-      </Box>
-      {errorText && <p style={{ color: 'red', marginTop: '8px' }}>{errorText}</p>}
+      </OtpBox>
+      {errorText && <ErrorText>{errorText}</ErrorText>}
     </Box>
   );
 };

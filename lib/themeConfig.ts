@@ -29,6 +29,7 @@ export type ColorClassName = keyof typeof colorClasses;
 
 export const typographyClasses = {
   'font-poppins': 'font-poppins',
+  'font-inter': 'font-inter',
   'text-7xl': 'text-7xl',
   'text-6xl': 'text-6xl',
   'text-5xl': 'text-5xl',

@@ -12,7 +12,7 @@ interface ITextFieldProps extends Omit<TextFieldProps, 'onChange'> {
   readOnly?: boolean;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
-  className?: string; // Add className prop
+  className?: string;
 }
 
 export const Wrapper = styled('div')({
@@ -51,14 +51,15 @@ export const StyledTextField = styled((props: ITextFieldProps) => <MuiTextField 
   '& .MuiOutlinedInput-notchedOutline': {
     border: 'none'
   },
-  // Add support for className prop
   '& .custom-class': {
-    // Define custom styles here
-    // Example:
     backgroundColor: 'lightblue',
     borderRadius: '12px',
     padding: '12px'
   }
+  // helper text
+  //  '& .MuiFormHelperText-root': {
+  //   marginLeft: 4
+  // }
 }));
 
 export const StyledHelperText = styled(FormHelperText)({
@@ -77,26 +78,26 @@ export const StyledHelperText = styled(FormHelperText)({
   flexGrow: 0
 });
 
-const ErrorIndicator = styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-evenly',
-  alignItems: 'flex-start',
-  padding: '0px',
-  gap: '6px',
-  width: '100%',
-  maxWidth: '236px',
-  height: '3px',
-  marginTop: '6px'
-});
+// const ErrorIndicator = styled('div')({
+//   display: 'flex',
+//   flexDirection: 'row',
+//   justifyContent: 'space-evenly',
+//   alignItems: 'flex-start',
+//   padding: '0px',
+//   gap: '6px',
+//   width: '100%',
+//   maxWidth: '236px',
+//   height: '3px',
+//   marginTop: '6px'
+// });
 
-const ErrorRectangle = styled('div')({
-  height: '3px',
-  background: '#ED7857',
-  borderRadius: '1px',
-  flex: 'none',
-  flexGrow: 1
-});
+// const ErrorRectangle = styled('div')({
+//   height: '3px',
+//   background: '#ED7857',
+//   borderRadius: '1px',
+//   flex: 'none',
+//   flexGrow: 1
+// });
 
 const TextField: React.FC<ITextFieldProps> = ({
   disabled = false,
@@ -128,16 +129,17 @@ const TextField: React.FC<ITextFieldProps> = ({
             </InputAdornment>
           ) : null
         }}
+        helperText={helperText}
       />
-      {error && props.type === 'password' && (
+      {/* {error && props.type === 'password' && (
         <ErrorIndicator>
           <ErrorRectangle />
           <ErrorRectangle />
           <ErrorRectangle />
           <ErrorRectangle />
         </ErrorIndicator>
-      )}
-      {helperText && <StyledHelperText>{helperText}</StyledHelperText>}
+      )} */}
+      {/* {helperText && <StyledHelperText>{helperText}</StyledHelperText>} */}
     </Wrapper>
   );
 };

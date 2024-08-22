@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Rating from './index';
+import Rating, { IRatingProps } from './index';
+import { useState } from 'react';
+import React from 'react';
 
 const meta: Meta<typeof Rating> = {
   title: 'Components/Rating',
@@ -60,5 +62,15 @@ export const InitialValue: Story = {
     value: 3,
     disabled: false,
     readOnly: false
+  }
+};
+
+export const HoverFeedback: Story = {
+  args: {
+    label: 'Hover Feedback Rating',
+    value: 0,
+    disabled: false,
+    readOnly: false,
+    onChange: (event, value) => console.log('Rating changed:', value)
   }
 };

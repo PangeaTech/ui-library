@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { TextFieldProps } from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { Box, FormControl, FormHelperText } from '@mui/material';
-import { SxProps, Theme } from '@mui/system';
+import { Box, FormControl, FormHelperText, SxProps, TextFieldProps, Theme } from '@mui/material';
 import { TextField } from 'ui-library';
 
 export interface IPasswordInputProps extends Omit<TextFieldProps, 'onChange'> {
@@ -26,15 +24,25 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({ onChange, error = false,
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
+  const defaultSx: SxProps<Theme> = {
+    '& .MuiInputBase-root': {
+      backgroundColor: disabled ? '#f5f5f5' : 'inherit',
+      color: disabled ? '#9e9e9e' : 'inherit'
+    },
+    '& .MuiFormLabel-root': {
+      color: disabled ? '#9e9e9e' : 'inherit'
+    }
+  };
 
   return (
-    <FormControl>
+    <FormControl error={error}>
       {label && <span className="font-base text-sm mb-1">{label}</span>}
-      <Box>
+      <Box sx={{ position: 'relative' }}>
         <TextField
           {...props}
           type={showPassword ? 'text' : 'password'}
           error={error}
+          sx={{ ...defaultSx, ...sx }}
           onChange={handleChange}
           disabled={disabled}
           endIcon={
@@ -48,9 +56,10 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({ onChange, error = false,
               </IconButton>
             )
           }
+          InputLabelProps={{ shrink: true }}
         />
       </Box>
-      {helperText && <FormHelperText error={error}>{helperText}</FormHelperText>}
+      <FormHelperText>{error ? helperText : ''}</FormHelperText>
     </FormControl>
   );
 };

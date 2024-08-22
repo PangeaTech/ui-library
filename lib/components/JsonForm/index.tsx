@@ -5,9 +5,10 @@ import { Box } from '@mui/material';
 interface IJsonFormProps {
   onSubmit: (data: any) => void;
   jsonData: any;
+  submitButtonLabel?: string;
 }
-const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData }) => {
-  const { handleSubmit, control } = useForm();
+const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLabel }) => {
+  const { handleSubmit, control, watch } = useForm();
 
   const renderElements = (componentType: string, data: any) => {
     switch (componentType) {
@@ -32,11 +33,16 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData }) => {
           />
         );
       case 'password':
+
+      case 'confirmPassword':
         return (
           <Controller
             name={data.name}
             control={control}
-            rules={data.rules}
+            rules={{
+              ...data.rules,
+              validate: (value) => value === watch('password') || 'Passwords do not match'
+            }}
             render={({ field, fieldState: { invalid, error } }) => (
               <PasswordInput
                 label={data.label}
@@ -46,7 +52,6 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData }) => {
                 error={invalid}
                 helperText={invalid ? error?.message : ''}
                 {...field}
-                fullWidth
               />
             )}
           />
@@ -77,7 +82,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData }) => {
             control={control}
             rules={data?.rules}
             render={({ field, fieldState: { invalid, error } }) => (
-              <TextArea label={data.label} {...field} error={invalid} helperText={invalid ? error?.message : ''} />
+              <TextArea label={data.label} {...field} error={invalid} helperText={invalid ? error?.message : ''} fullWidth />
             )}
           />
         );
@@ -91,9 +96,11 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData }) => {
       {jsonData.fields.map((field: any) => {
         return <div>{renderElements(field.componentType, field)}</div>;
       })}
-      <Button type="submit" className="w-full my-2">
-        Submit
-      </Button>
+      <div className="flex justify-center max-w-[16.5rem]">
+        <Button type="submit" className="my-1 w-full">
+          {submitButtonLabel || 'Submit'}
+        </Button>
+      </div>
     </Box>
   );
 };

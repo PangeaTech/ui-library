@@ -5,7 +5,8 @@ const meta: Meta<typeof PageLoader> = {
   title: 'Components/PageLoader',
   component: PageLoader,
   argTypes: {
-    loadingText: { control: 'text' }
+    loadingText: { control: 'text' },
+    type: { control: 'text' }
   }
 };
 
@@ -15,6 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    loadingText: 'Loading...'
+    loadingText: 'Loading...',
+    type: 'loaderbar'
   }
 };
