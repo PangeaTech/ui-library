@@ -41,9 +41,9 @@ const OtpAuthPage: React.FC<IOtpAuthPageProps> = ({ logoUrl, onSendOtp, onVerify
   };
 
   const handleSendOtp = (data) => {
-    console.log('data', data);
     if (onSendOtp(data)) {
       generateDummyOtp();
+      setEmail(data.email);
       setOtpSent(true);
     }
   };
@@ -62,7 +62,7 @@ const OtpAuthPage: React.FC<IOtpAuthPageProps> = ({ logoUrl, onSendOtp, onVerify
     if (otpSent) {
       return (
         <div>
-          <p className="text-center">
+          <p className="">
             Enter the OTP sent to <span className="font-semibold">{email}</span>
           </p>
         </div>
@@ -70,8 +70,8 @@ const OtpAuthPage: React.FC<IOtpAuthPageProps> = ({ logoUrl, onSendOtp, onVerify
     }
 
     return (
-      <div>
-        <p className="">Enter your Email address</p>
+      <div className="">
+        <p className="font-semibold">Enter your Email address</p>
       </div>
     );
   };
