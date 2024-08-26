@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { Box, FormControl, FormHelperText, SxProps, TextFieldProps, Theme } from '@mui/material';
+import { Box, FormControl, SxProps, TextFieldProps, Theme } from '@mui/material';
 import { TextField } from 'ui-library';
 
 export interface IPasswordInputProps extends Omit<TextFieldProps, 'onChange'> {
