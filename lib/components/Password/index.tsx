@@ -57,9 +57,10 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({ onChange, error = false,
             )
           }
           InputLabelProps={{ shrink: true }}
+          helperText={error ? helperText : ''}
         />
       </Box>
-      <FormHelperText>{error ? helperText : ''}</FormHelperText>
+      {/* <FormHelperText>{error ? helperText : ''}</FormHelperText> */}
     </FormControl>
   );
 };

@@ -32,7 +32,14 @@ export const signUpData = {
       error: false,
       placeholder: 'Enter your password',
       componentType: 'password',
-      rules: { required: 'Please enter your password', minLength: { value: 8, message: 'Password must be at least 8 characters' } }
+      rules: {
+        required: 'Please enter your password',
+        minLength: { value: 8, message: 'Password must be at least 8 characters' },
+        pattern: {
+          value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).*$/,
+          message: 'Must include 1 lowercase, 1 uppercase, and 1 special character'
+        }
+      }
     },
     {
       name: 'confirmPassword',
