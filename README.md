@@ -82,9 +82,14 @@ import React from 'react';
 import { AuthPage } from '@pangeatech/ui-library/pages';
 
 const App = () => {
+
+  const handleSubmit=(data: any) => {
+      
+  }
   return (
     <div>
-      <AuthPage />
+      <AuthPage mode='login' onSubmit={handleSubmit} 
+      />
     </div>
   );
 };
