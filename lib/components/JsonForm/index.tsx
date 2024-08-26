@@ -1,6 +1,7 @@
 import { Button, Dropdown, PasswordInput, TextArea, TextField } from 'ui-library';
 import { useForm, Controller } from 'react-hook-form';
 import { Box } from '@mui/material';
+import { useEffect } from 'react';
 
 interface IJsonFormProps {
   onSubmit: (data: any) => void;
@@ -8,7 +9,22 @@ interface IJsonFormProps {
   submitButtonLabel?: string;
 }
 const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLabel }) => {
-  const { handleSubmit, control, watch } = useForm();
+  const { handleSubmit, control, watch, trigger } = useForm();
+
+  const password = watch('password');
+  const confirmPassword = watch('confirmPassword');
+
+  useEffect(() => {
+    if (password && confirmPassword) {
+      if (password !== confirmPassword) {
+        trigger('confirmPassword');
+      }
+      return;
+    }
+    if (password) {
+      trigger('password');
+    }
+  }, [password, confirmPassword]);
 
   const renderElements = (componentType: string, data: any) => {
     switch (componentType) {
