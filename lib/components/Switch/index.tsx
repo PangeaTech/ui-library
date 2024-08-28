@@ -34,19 +34,18 @@ const IOSSwitch = styled((props: CustomSwitchProps) => <MuiSwitch focusVisibleCl
           border: 0
         },
         '& .MuiSwitch-thumb': {
-          color: '#FFFFFF'
+          color: '#FFFFFF',
+          border: `6px solid ${switchBgColor || '#2D35DC'}`
         },
         '&.Mui-disabled + .MuiSwitch-track': {
-          // opacity: 0.5,
-          backgroundColor: '#DFE0FF'
+          opacity: 0.5
         }
       }
     },
     '& .MuiSwitch-thumb': {
       boxSizing: 'border-box',
       width: 20,
-      height: 20,
-      backgroundColor: '#FFFFFF'
+      height: 20
     },
     '& .MuiSwitch-track': {
       borderRadius: 13,
@@ -74,6 +73,7 @@ const IOSSwitch = styled((props: CustomSwitchProps) => <MuiSwitch focusVisibleCl
         boxShadow: '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)'
       }
     },
+
     // Resetting the default MUI styles
     '& .MuiSwitch-root': {
       boxShadow: 'none',
