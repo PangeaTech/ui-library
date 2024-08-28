@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { Box, FormControl, FormHelperText, SxProps, TextFieldProps, Theme } from '@mui/material';
+import { Box, FormControl, SxProps, TextFieldProps, Theme } from '@mui/material';
 import { TextField } from 'ui-library';
 
 export interface IPasswordInputProps extends Omit<TextFieldProps, 'onChange'> {
@@ -24,6 +24,15 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({ onChange, error = false,
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
+  const defaultSx: SxProps<Theme> = {
+    '& .MuiInputBase-root': {
+      backgroundColor: disabled ? '#f5f5f5' : 'inherit',
+      color: disabled ? '#9e9e9e' : 'inherit'
+    },
+    '& .MuiFormLabel-root': {
+      color: disabled ? '#9e9e9e' : 'inherit'
+    }
+  };
 
   return (
     <FormControl error={error}>
@@ -33,18 +42,25 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({ onChange, error = false,
           {...props}
           type={showPassword ? 'text' : 'password'}
           error={error}
+          sx={{ ...defaultSx, ...sx }}
           onChange={handleChange}
           disabled={disabled}
-          InputProps={{
-            endAdornment: (
+          endIcon={
+            showPassword ? (
               <IconButton onClick={togglePasswordVisibility} edge="end">
-                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                <VisibilityIcon />
+              </IconButton>
+            ) : (
+              <IconButton onClick={togglePasswordVisibility} edge="end">
+                <VisibilityOffIcon />
               </IconButton>
             )
-          }}
+          }
+          InputLabelProps={{ shrink: true }}
+          helperText={error ? helperText : ''}
         />
       </Box>
-      <FormHelperText>{error ? helperText : ''}</FormHelperText>
+      {/* <FormHelperText>{error ? helperText : ''}</FormHelperText> */}
     </FormControl>
   );
 };

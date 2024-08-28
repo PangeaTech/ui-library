@@ -56,6 +56,10 @@ export const StyledTextField = styled((props: ITextFieldProps) => <MuiTextField 
     borderRadius: '12px',
     padding: '12px'
   }
+  // helper text
+  //  '& .MuiFormHelperText-root': {
+  //   marginLeft: 4
+  // }
 }));
 
 export const StyledHelperText = styled(FormHelperText)({
@@ -125,6 +129,7 @@ const TextField: React.FC<ITextFieldProps> = ({
             </InputAdornment>
           ) : null
         }}
+        helperText={helperText}
       />
       {/* {error && props.type === 'password' && (
         <ErrorIndicator>
@@ -134,7 +139,7 @@ const TextField: React.FC<ITextFieldProps> = ({
           <ErrorRectangle />
         </ErrorIndicator>
       )} */}
-      {helperText && <StyledHelperText>{helperText}</StyledHelperText>}
+      {/* {helperText && <StyledHelperText>{helperText}</StyledHelperText>} */}
     </Wrapper>
   );
 };
