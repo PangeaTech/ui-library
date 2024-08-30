@@ -1,4 +1,6 @@
-export const signUpData = {
+import { IJsonData } from 'ui-library/components/JsonForm';
+
+export const signUpData: IJsonData = {
   fields: [
     {
       name: 'email',
@@ -29,7 +31,6 @@ export const signUpData = {
       name: 'password',
       type: 'password',
       required: true,
-      error: false,
       placeholder: 'Enter your password',
       componentType: 'password',
       rules: {
@@ -39,7 +40,8 @@ export const signUpData = {
           value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).*$/,
           message: 'Must include at least 1 lowercase, 1 uppercase, and 1 special character'
         }
-      }
+      },
+      helperText: 'Must include at least 1 lowercase, 1 uppercase, and 1 special character'
     },
     {
       name: 'confirmPassword',
@@ -53,7 +55,7 @@ export const signUpData = {
   ]
 };
 
-export const loginData = {
+export const loginData: IJsonData = {
   fields: [
     {
       name: 'email',
@@ -75,7 +77,6 @@ export const loginData = {
       label: 'Password',
       type: 'password',
       required: true,
-      error: false,
       placeholder: 'Enter your password',
       componentType: 'password',
       rules: { required: 'Please enter your password', minLength: { value: 8, message: 'Password must be at least 8 characters' } }

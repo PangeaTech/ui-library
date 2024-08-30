@@ -12,7 +12,7 @@ import AvatarComponent from 'ui-library/components/Avatar';
 import Switch from 'ui-library/components/Switch';
 import Table from 'ui-library/components/Table';
 import JsonForm from 'ui-library/components/JsonForm';
-import jsonData from './data/sampleForm.json';
+import jsonData from './data/sampleForm.json' assert { type: 'json' };
 
 const App: React.FC = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
