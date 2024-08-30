@@ -1,7 +1,6 @@
 import { Button, Dropdown, PasswordInput, TextArea, TextField } from 'ui-library';
 import { useForm, Controller } from 'react-hook-form';
 import { Box } from '@mui/material';
-import { useEffect } from 'react';
 
 interface IJsonFormProps {
   onSubmit: (data: any) => void;
