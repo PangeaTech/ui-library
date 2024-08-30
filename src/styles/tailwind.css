@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 /*
-! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.10 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -558,117 +558,121 @@ video {
   --tw-contain-style:  ;
 }
 
-body :is(.visible){
+body .visible{
   visibility: visible;
 }
 
-body :is(.fixed){
+body .fixed{
   position: fixed;
 }
 
-body :is(.absolute){
+body .absolute{
   position: absolute;
 }
 
-body :is(.relative){
+body .relative{
   position: relative;
 }
 
-body :is(.bottom-0){
+body .bottom-0{
   bottom: 0px;
 }
 
-body :is(.left-0){
+body .left-0{
   left: 0px;
 }
 
-body :is(.z-10){
+body .z-10{
   z-index: 10;
 }
 
-body :is(.mx-auto){
+body .mx-auto{
   margin-left: auto;
   margin-right: auto;
 }
 
-body :is(.my-2){
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-body :is(.mb-1){
+body .my-1{
+  margin-top: 0.25rem;
   margin-bottom: 0.25rem;
 }
 
-body :is(.mb-2){
+body .mb-1{
+  margin-bottom: 0.25rem;
+}
+
+body .mb-2{
   margin-bottom: 0.5rem;
 }
 
-body :is(.mb-4){
+body .mb-4{
   margin-bottom: 1rem;
 }
 
-body :is(.ml-6){
+body .ml-6{
   margin-left: 1.5rem;
 }
 
-body :is(.mt-2){
+body .mt-2{
   margin-top: 0.5rem;
 }
 
-body :is(.mt-4){
+body .mt-4{
   margin-top: 1rem;
 }
 
-body :is(.block){
+body .block{
   display: block;
 }
 
-body :is(.flex){
+body .flex{
   display: flex;
 }
 
-body :is(.hidden){
+body .hidden{
   display: none;
 }
 
-body :is(.w-80){
+body .w-80{
   width: 20rem;
 }
 
-body :is(.w-full){
+body .w-full{
   width: 100%;
 }
 
-body :is(.max-w-60){
+body .max-w-60{
   max-width: 15rem;
 }
 
-body :is(.shrink){
+body .max-w-\[16\.5rem\]{
+  max-width: 16.5rem;
+}
+
+body .shrink{
   flex-shrink: 1;
 }
 
-body :is(.transform){
+body .transform{
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-body :is(.resize){
+body .resize{
   resize: both;
 }
 
-body :is(.flex-col){
+body .flex-col{
   flex-direction: column;
 }
 
-body :is(.items-center){
+body .items-center{
   align-items: center;
 }
 
-body :is(.justify-center){
+body .justify-center{
   justify-content: center;
 }
 
-body :is(.gap-2){
+body .gap-2{
   gap: 0.5rem;
 }
 
@@ -684,120 +688,128 @@ body :is(.space-y-4 > :not([hidden]) ~ :not([hidden])){
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
-body :is(.rounded){
+body .rounded{
   border-radius: 0.25rem;
 }
 
-body :is(.border){
+body .border{
   border-width: 1px;
 }
 
-body :is(.border-2){
+body .border-2{
   border-width: 2px;
 }
 
-body :is(.bg-slate-100){
+body .bg-slate-100{
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
 
-body :is(.px-12){
+body .px-12{
   padding-left: 3rem;
   padding-right: 3rem;
 }
 
-body :is(.py-1){
+body .py-1{
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
 }
 
-body :is(.pl-6){
+body .pl-6{
   padding-left: 1.5rem;
 }
 
-body :is(.text-center){
+body .text-center{
   text-align: center;
 }
 
-body :is(.font-sans){
+body .font-sans{
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-body :is(.text-2xl){
+body .text-2xl{
   font-size: 1.5rem;
   line-height: 2rem;
 }
 
-body :is(.text-3xl){
+body .text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
 
-body :is(.text-4xl){
+body .text-4xl{
   font-size: 2.25rem;
   line-height: 2.5rem;
 }
 
-body :is(.text-5xl){
+body .text-5xl{
   font-size: 3rem;
   line-height: 1;
 }
 
-body :is(.text-6xl){
+body .text-6xl{
   font-size: 3.75rem;
   line-height: 1;
 }
 
-body :is(.text-7xl){
+body .text-7xl{
   font-size: 4.5rem;
   line-height: 1;
 }
 
-body :is(.text-sm){
+body .text-sm{
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
 
-body :is(.text-xl){
+body .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
 
-body :is(.text-xs){
+body .text-xs{
   font-size: 0.75rem;
   line-height: 1rem;
 }
 
-body :is(.font-semibold){
+body .font-semibold{
   font-weight: 600;
 }
 
-body :is(.italic){
+body .uppercase{
+  text-transform: uppercase;
+}
+
+body .lowercase{
+  text-transform: lowercase;
+}
+
+body .italic{
   font-style: italic;
 }
 
-body :is(.text-blue-400){
+body .text-blue-400{
   --tw-text-opacity: 1;
   color: rgb(96 165 250 / var(--tw-text-opacity));
 }
 
-body :is(.text-gray-600){
+body .text-gray-600{
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
-body :is(.text-pangea-blue-100){
+body .text-pangea-blue-100{
   --tw-text-opacity: 1;
   color: rgb(42 49 138 / var(--tw-text-opacity));
 }
 
-body :is(.shadow-lg){
+body .shadow-lg{
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-body :is(.filter){
+body .filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
@@ -809,15 +821,26 @@ body :is(.filter){
   font-family: 'Poppins', sans-serif;
 }
 
-.font-inter {
-  font-family: 'Inter', sans-serif;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  box-shadow: 0 0 0px 1000px white inset;
+  -webkit-text-fill-color: #000;
+  -webkit-transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
-body :is(.hover\:text-purple-700:hover){
+body .hover\:text-purple-700:hover{
   --tw-text-opacity: 1;
   color: rgb(126 34 206 / var(--tw-text-opacity));
 }
 
-body :is(.hover\:underline:hover){
+body .hover\:underline:hover{
   text-decoration-line: underline;
 }

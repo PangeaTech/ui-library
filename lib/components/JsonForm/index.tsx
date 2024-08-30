@@ -84,7 +84,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLa
                 options={data.options}
                 required={data.required}
                 value={value}
-                onChange={(_e, InputValue) => onChange(InputValue?.value)}
+                onChange={(_e, InputValue) => onChange(InputValue)}
                 error={invalid}
                 helperText={invalid ? error?.message : ''}
               />
