@@ -31,6 +31,9 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({ onChange, error = false,
     },
     '& .MuiFormLabel-root': {
       color: disabled ? '#9e9e9e' : 'inherit'
+    },
+    '& .MuiFormHelperText-root': {
+      width: '80%'
     }
   };
 
@@ -57,7 +60,7 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({ onChange, error = false,
             )
           }
           InputLabelProps={{ shrink: true }}
-          helperText={error ? helperText : ''}
+          helperText={helperText}
         />
       </Box>
       {/* <FormHelperText>{error ? helperText : ''}</FormHelperText> */}
