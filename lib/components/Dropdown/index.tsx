@@ -40,7 +40,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
         disabled={disabled}
         options={options}
         value={value}
-        getOptionLabel={(option) => option.label}
+        // getOptionLabel={(option) => option.label}
         onChange={onChange}
         renderInput={(params) => <StyledTextField {...params} error={error} placeholder="Select" />}
         fullWidth

@@ -1,7 +1,6 @@
 import { Button, Dropdown, PasswordInput, TextArea, TextField } from 'ui-library';
 import { useForm, Controller } from 'react-hook-form';
 import { Box } from '@mui/material';
-import { useEffect } from 'react';
 
 interface IJsonFormProps {
   onSubmit: (data: any) => void;
@@ -9,22 +8,7 @@ interface IJsonFormProps {
   submitButtonLabel?: string;
 }
 const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLabel }) => {
-  const { handleSubmit, control, watch, trigger } = useForm();
-
-  const password = watch('password');
-  const confirmPassword = watch('confirmPassword');
-
-  useEffect(() => {
-    if (password && confirmPassword) {
-      if (password !== confirmPassword) {
-        trigger('confirmPassword');
-      }
-      return;
-    }
-    if (password) {
-      trigger('password');
-    }
-  }, [password, confirmPassword]);
+  const { handleSubmit, control, watch } = useForm();
 
   const renderElements = (componentType: string, data: any) => {
     switch (componentType) {
@@ -66,7 +50,13 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLa
                 required={data.required}
                 placeholder={data.placeholder}
                 error={invalid}
-                helperText={invalid ? error?.message : ''}
+                helperText={
+                  invalid
+                    ? error?.message
+                    : componentType === 'password'
+                      ? 'Must include at least 1 lowercase, 1 uppercase, and 1 special character'
+                      : ''
+                }
                 {...field}
               />
             )}
@@ -113,7 +103,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLa
         return <div>{renderElements(field.componentType, field)}</div>;
       })}
       <div className="flex justify-center max-w-[16.5rem]">
-        <Button type="submit" className="my-1 w-full">
+        <Button type="submit" className="my-3 w-full">
           {submitButtonLabel || 'Submit'}
         </Button>
       </div>
