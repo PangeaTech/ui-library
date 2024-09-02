@@ -5,16 +5,16 @@ import { signUpData, loginData } from './authData';
 export interface IAuthPageProps {
   mode: 'login' | 'signup' | 'forgotPassword';
   onSubmit: (data: any) => void;
-  customJsonData?: { fields: any[] };
+  fields?: { fields: any[] };
   loading?: boolean;
 }
 
-const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit, customJsonData, loading }) => {
+const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit, fields, loading }) => {
   const [resetPasswordSent] = useState(false);
 
   const jsonData = useMemo(() => {
-    if (customJsonData) {
-      return customJsonData;
+    if (fields) {
+      return fields;
     }
     if (mode === 'signup') {
       return signUpData;
@@ -23,7 +23,7 @@ const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit, customJsonData, lo
       return loginData;
     }
     return { fields: [] };
-  }, [mode, customJsonData]);
+  }, [mode, fields]);
 
   return (
     <div className="border-2 space-y-4">
