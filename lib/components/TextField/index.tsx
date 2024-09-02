@@ -51,7 +51,7 @@ export const StyledTextField = styled((props: ITextFieldProps) => <MuiTextField 
   '& .MuiOutlinedInput-notchedOutline': {
     border: 'none'
   },
-  '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input:-webkit-autofil': {
+  '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
     height: '0.5376em'
   },
   '& .custom-class': {
