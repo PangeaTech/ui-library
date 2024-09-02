@@ -1,14 +1,21 @@
-import { JsonForm } from 'ui-library';
 import React, { useMemo, useState } from 'react';
+import { JsonForm } from 'ui-library';
 import { signUpData, loginData } from './authData';
+
 export interface IAuthPageProps {
   mode: 'login' | 'signup' | 'forgotPassword';
-  onSubmit: (data: { [key: string]: string }) => boolean;
+  onSubmit: (data: any) => void;
+  customJsonData?: { fields: any[] };
+  loading?: boolean;
 }
 
-const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit }) => {
-  const [resetPasswordSent, setResetPasswordSent] = useState(false);
+const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit, customJsonData, loading }) => {
+  const [resetPasswordSent] = useState(false);
+
   const jsonData = useMemo(() => {
+    if (customJsonData) {
+      return customJsonData;
+    }
     if (mode === 'signup') {
       return signUpData;
     }
@@ -16,31 +23,15 @@ const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit }) => {
       return loginData;
     }
     return { fields: [] };
-  }, [mode]);
-
-  const handleSubmit = (data: any) => {
-    if (onSubmit(data)) {
-      if (mode === 'login') {
-        console.log('Login successful', data);
-      } else if (mode === 'signup') {
-        alert('Sign Up successful');
-      } else if (mode === 'forgotPassword') {
-        if (resetPasswordSent) {
-          alert('Password reset successful');
-        } else {
-          setResetPasswordSent(true);
-        }
-      }
-    }
-  };
+  }, [mode, customJsonData]);
 
   return (
     <div className="border-2 space-y-4">
-      <div className="flex flex-col items-center">
-        <h2 className="text-2xl font-semibold">
+      <div className="text-center mb-6">
+        <h2 className="text-2xl font-semibold text-gray-800">
           {mode === 'login' ? 'Login' : mode === 'signup' ? 'Sign Up' : resetPasswordSent ? 'Reset Password' : 'Forgot Password'}
         </h2>
-        <p>
+        <p className="text-gray-600">
           {mode === 'login'
             ? 'Welcome back!'
             : mode === 'signup'
@@ -50,9 +41,9 @@ const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit }) => {
                 : 'Enter your email address'}
         </p>
       </div>
-
       <JsonForm
-        onSubmit={handleSubmit}
+        loading={loading}
+        onSubmit={onSubmit}
         jsonData={jsonData}
         submitButtonLabel={mode === 'login' ? 'Login' : mode === 'signup' ? 'Sign Up' : resetPasswordSent ? 'Reset Password' : 'Send Reset Link'}
       />
