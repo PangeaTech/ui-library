@@ -36,7 +36,7 @@ const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit }) => {
 
   return (
     <div className="border-2 space-y-4">
-      <div className="">
+      <div className="flex flex-col items-center">
         <h2 className="text-2xl font-semibold">
           {mode === 'login' ? 'Login' : mode === 'signup' ? 'Sign Up' : resetPasswordSent ? 'Reset Password' : 'Forgot Password'}
         </h2>
