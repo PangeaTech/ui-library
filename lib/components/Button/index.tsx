@@ -9,6 +9,7 @@ interface IButtonProps extends ButtonProps {
   fullWidth?: boolean;
   disabled?: boolean;
   loading?: boolean;
+  onclick?: () => void;
   children?: ReactNode;
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, data?: any) => void;
@@ -25,6 +26,7 @@ const Button: React.FC<IButtonProps> = ({
   fullWidth = false,
   disabled = false,
   loading = false,
+  onclick,
   children,
   className,
   onClick,

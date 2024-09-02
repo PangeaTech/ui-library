@@ -1,9 +1,11 @@
+// src/components/Dropdown.tsx
+
 import React from 'react';
 import { Autocomplete, AutocompleteProps } from '@mui/material';
 import { Wrapper, StyledHelperText, StyledTextField } from '../TextField/index';
 
 interface OptionType {
-  value: string;
+  value: string | number;
   label: string;
 }
 
@@ -16,7 +18,7 @@ interface IDropdownProps extends Omit<AutocompleteProps<OptionType, false, false
   isSelect?: boolean;
   required?: boolean;
   value?: string | null;
-  onChange?: (event: React.SyntheticEvent, value: string | null) => void;
+  onChange?: (event: React.SyntheticEvent, value: string | number | null) => void;
 }
 
 const Dropdown: React.FC<IDropdownProps> = ({

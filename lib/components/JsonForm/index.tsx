@@ -78,13 +78,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLa
                 required={data.required}
                 placeholder={data.placeholder}
                 error={invalid}
-                helperText={
-                  invalid
-                    ? error?.message
-                    : componentType === 'password'
-                      ? 'Must include at least 1 lowercase, 1 uppercase, and 1 special character'
-                      : ''
-                }
+                helperText={invalid ? error?.message : componentType === 'password' ? data.helperText : undefined}
                 {...field}
               />
             )}
