@@ -34,8 +34,9 @@ interface IJsonFormProps {
   onSubmit: (data: any) => void;
   jsonData: IJsonData;
   submitButtonLabel?: string;
+  loading?: boolean;
 }
-const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLabel }) => {
+const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLabel, loading }) => {
   const { handleSubmit, control, watch } = useForm();
 
   const renderElements = (componentType: string, data: any) => {
@@ -125,7 +126,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLa
         return <div>{renderElements(field.componentType, field)}</div>;
       })}
       <div className="flex justify-center max-w-[16.5rem]">
-        <Button type="submit" className="my-3 w-full">
+        <Button type="submit" className="my-3 w-full" loading={loading}>
           {submitButtonLabel || 'Submit'}
         </Button>
       </div>
