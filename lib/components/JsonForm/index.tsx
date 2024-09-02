@@ -120,7 +120,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLa
   };
 
   return (
-    <Box component={'form'} onSubmit={handleSubmit(onSubmit)}>
+    <Box component={'form'} onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
       {jsonData.fields.map((field: any) => {
         return <div>{renderElements(field.componentType, field)}</div>;
       })}
