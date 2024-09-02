@@ -15,8 +15,8 @@ interface IDropdownProps extends Omit<AutocompleteProps<OptionType, false, false
   label?: string;
   isSelect?: boolean;
   required?: boolean;
-  value?: string; // Value as string
-  onChange?: (event: React.SyntheticEvent, value: string | null) => void; // onChange expects a string or null
+  value?: string | null;
+  onChange?: (event: React.SyntheticEvent, value: string | null) => void;
 }
 
 const Dropdown: React.FC<IDropdownProps> = ({
@@ -30,7 +30,6 @@ const Dropdown: React.FC<IDropdownProps> = ({
   onChange,
   ...props
 }) => {
-  // Convert string value to OptionType for Autocomplete component
   const selectedOption = options.find((option) => option.value === value) || null;
 
   return (

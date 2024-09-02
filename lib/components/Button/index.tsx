@@ -10,6 +10,7 @@ interface IButtonProps extends ButtonProps {
   disabled?: boolean;
   loading?: boolean;
   children?: ReactNode;
+  className?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, data?: any) => void;
 }
 
@@ -25,6 +26,7 @@ const Button: React.FC<IButtonProps> = ({
   disabled = false,
   loading = false,
   children,
+  className,
   onClick,
   ...rest
 }) => {
