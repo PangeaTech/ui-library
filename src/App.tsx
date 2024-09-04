@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Checkbox, Logo, OtpInput, PasswordInput, Radio, TextField, Slider } from 'ui-library';
+import { Button, Checkbox, Logo, OtpInput, PasswordInput, Radio, TextField, Slider, Header } from 'ui-library';
 import TextArea from 'ui-library/components/TextArea';
 import SearchBar from 'ui-library/components/Search';
 import OtpAuthPage, { IOtpAuthPageProps } from 'ui-library/pages/OtpAuthPage';
@@ -171,101 +171,104 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="  pl-6">
-      <div className="App">
-        <TextField
-          label="Example TextField"
-          value={textFieldValue}
-          onChange={handleTextFieldChange}
-          error={!!textFieldError}
-          helperText={textFieldError ? 'This field is required' : ''}
-          variant="outlined"
-        />
+    <>
+      <Header />
+      <div className="pl-6">
+        <div className="App">
+          <TextField
+            label="Example TextField"
+            value={textFieldValue}
+            onChange={handleTextFieldChange}
+            error={!!textFieldError}
+            helperText={textFieldError ? 'This field is required' : ''}
+            variant="outlined"
+          />
+        </div>
+        <div className="App text-xs">
+          <h1>Textarea example</h1>
+          <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} error={false} disabled={false} />
+        </div>
+        <div className="App">
+          <h1>Checkbox example</h1>
+          <Checkbox label="Option 1" onChange={toggleFlag} checked={flag} />
+          <Checkbox label="Option 2" />
+        </div>
+        <div className="App">
+          <h1>Searchbar example</h1>
+          <SearchBar value={searchValue} onChange={handleSearchChange} disabled={flag} />
+        </div>
+        <div className="App">
+          <h1>Password example</h1>
+          <PasswordInput
+            label="Password"
+            value={passwordValue}
+            onChange={handlePasswordChange}
+            error={!!passwordError}
+            helperText={passwordError ? 'Password is required' : ''}
+            variant="outlined"
+            fullWidth
+          />
+        </div>
+        <div className="App">
+          <h1>Otp example</h1>
+          <OtpInput label="OTP" length={6} onChange={handleOtpChange} disabled={!flag} />
+        </div>
+        <div className="App">
+          <h1>Button example</h1>
+          <Button variant="contained" color="primary" fullWidth onClick={handleButtonClick} disabled={!flag}>
+            Click Me
+          </Button>
+        </div>
+        <div className="App">
+          <h1>Tabs Example</h1>
+          <TabsComponent tabs={tabs} variant="fullWidth" centered indicatorColor="primary" textColor="primary" />
+        </div>
+        <div className="App">
+          <h1>Table example</h1>
+          <Table columnDefs={columnDefs} rowData={rowData} />
+        </div>
+        <div className="App">
+          <h1>Avatar Example</h1>
+          <AvatarComponent alt="John Doe" initials="JD" />
+          <AvatarComponent alt="Jane Doe" src="https://example.com/avatar.jpg" />
+          <AvatarComponent alt="No Avatar" size={80} />
+        </div>
+        <div className="App">
+          <h1>Radio example</h1>
+          <Radio label="Select an option" options={options} value={selectedOption} onChange={handleOptionChange} RadioProps={{ color: 'primary' }} />
+        </div>
+        <div className="App">
+          <h1>Logo Example</h1>
+          <Logo logoUrl="https://example.com/logo.png" altText="Company Logo" />
+        </div>
+        <div className="App">
+          <h1>Otp auth page example</h1>
+          <OtpAuthPage {...otpAuthPageProps} />
+        </div>
+        <div className="App">
+          <h1>Auth page example</h1>
+          <AuthPage {...authPageProps} />
+        </div>
+        <div className="App">
+          <h1>SSO auth page example</h1>
+          <SsoAuthPage {...ssoAuthPageProps} />
+        </div>
+        <div className="App">
+          <h1>Error page example</h1>
+          <ErrorPage errorMessage="Failed to load data." onRefresh={handleRefresh} />
+        </div>
+        <div className="App max-w-60 ml-6">
+          <h1>Slider example</h1>
+          <Slider onChange={handleSliderChange} value={sliderValue} />
+        </div>
+        <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
+        <Switch label="On" checked={flag} onChange={toggleFlag} switchBgColor="" disabled={false} value={flag} isLeftLabel={true} leftlabel="Off" />
+        <div className="App w-80 px-12 mx-auto border-2 bg-slate-100">
+          <h1 className="font-sans text-3xl text-center">Json Form example</h1>
+          <JsonForm onSubmit={(data) => console.log('submitted', data)} jsonData={jsonData} />
+        </div>
       </div>
-      <div className="App text-xs">
-        <h1>Textarea example</h1>
-        <TextArea label="Example TextArea" value={textAreaValue} onChange={handleTextAreaChange} error={false} disabled={false} />
-      </div>
-      <div className="App">
-        <h1>Checkbox example</h1>
-        <Checkbox label="Option 1" onChange={toggleFlag} checked={flag} />
-        <Checkbox label="Option 2" />
-      </div>
-      <div className="App">
-        <h1>Searchbar example</h1>
-        <SearchBar value={searchValue} onChange={handleSearchChange} disabled={flag} />
-      </div>
-      <div className="App">
-        <h1>Password example</h1>
-        <PasswordInput
-          label="Password"
-          value={passwordValue}
-          onChange={handlePasswordChange}
-          error={!!passwordError}
-          helperText={passwordError ? 'Password is required' : ''}
-          variant="outlined"
-          fullWidth
-        />
-      </div>
-      <div className="App">
-        <h1>Otp example</h1>
-        <OtpInput label="OTP" length={6} onChange={handleOtpChange} disabled={!flag} />
-      </div>
-      <div className="App">
-        <h1>Button example</h1>
-        <Button variant="contained" color="primary" fullWidth onClick={handleButtonClick} disabled={!flag}>
-          Click Me
-        </Button>
-      </div>
-      <div className="App">
-        <h1>Tabs Example</h1>
-        <TabsComponent tabs={tabs} variant="fullWidth" centered indicatorColor="primary" textColor="primary" />
-      </div>
-      <div className="App">
-        <h1>Table example</h1>
-        <Table columnDefs={columnDefs} rowData={rowData} />
-      </div>
-      <div className="App">
-        <h1>Avatar Example</h1>
-        <AvatarComponent alt="John Doe" initials="JD" />
-        <AvatarComponent alt="Jane Doe" src="https://example.com/avatar.jpg" />
-        <AvatarComponent alt="No Avatar" size={80} />
-      </div>
-      <div className="App">
-        <h1>Radio example</h1>
-        <Radio label="Select an option" options={options} value={selectedOption} onChange={handleOptionChange} RadioProps={{ color: 'primary' }} />
-      </div>
-      <div className="App">
-        <h1>Logo Example</h1>
-        <Logo logoUrl="https://example.com/logo.png" altText="Company Logo" />
-      </div>
-      <div className="App">
-        <h1>Otp auth page example</h1>
-        <OtpAuthPage {...otpAuthPageProps} />
-      </div>
-      <div className="App">
-        <h1>Auth page example</h1>
-        <AuthPage {...authPageProps} />
-      </div>
-      <div className="App">
-        <h1>SSO auth page example</h1>
-        <SsoAuthPage {...ssoAuthPageProps} />
-      </div>
-      <div className="App">
-        <h1>Error page example</h1>
-        <ErrorPage errorMessage="Failed to load data." onRefresh={handleRefresh} />
-      </div>
-      <div className="App max-w-60 ml-6">
-        <h1>Slider example</h1>
-        <Slider onChange={handleSliderChange} value={sliderValue} />
-      </div>
-      <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
-      <Switch label="On" checked={flag} onChange={toggleFlag} switchBgColor="" disabled={false} value={flag} isLeftLabel={true} leftlabel="Off" />
-      <div className="App w-80 px-12 mx-auto border-2 bg-slate-100">
-        <h1 className="font-sans text-3xl text-center">Json Form example</h1>
-        <JsonForm onSubmit={(data) => console.log('submitted', data)} jsonData={jsonData} />
-      </div>
-    </div>
+    </>
   );
 };
 

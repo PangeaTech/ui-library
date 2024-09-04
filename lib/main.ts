@@ -22,3 +22,4 @@ export { default as Table } from './components/Table';
 export { default as JsonForm } from './components/JsonForm';
 export { colorClasses, typographyClasses } from './themeConfig';
 export { default as Slider } from './components/Slider';
+export { default as Header } from './components/Header';
