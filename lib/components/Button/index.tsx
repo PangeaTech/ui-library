@@ -9,6 +9,7 @@ interface IButtonProps extends ButtonProps {
   fullWidth?: boolean;
   disabled?: boolean;
   loading?: boolean;
+  onclick?: () => void;
   children?: ReactNode;
 }
 
@@ -23,11 +24,12 @@ const Button: React.FC<IButtonProps> = ({
   fullWidth = false,
   disabled = false,
   loading = false,
+  onclick,
   children,
   ...rest
 }) => {
   return (
-    <MuiButton variant={variant} color={color} fullWidth={fullWidth} disabled={disabled || loading} {...rest}>
+    <MuiButton variant={variant} color={color} fullWidth={fullWidth} onClick={onclick} disabled={disabled || loading} {...rest}>
       {loading && <LoadingSpinner size={24} />}
       <span style={{ visibility: loading ? 'hidden' : 'visible' }}>{children}</span>
     </MuiButton>

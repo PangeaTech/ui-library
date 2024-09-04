@@ -15,7 +15,7 @@ const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit }) => {
     if (mode === 'login') {
       return loginData;
     }
-    return {};
+    return { fields: [] };
   }, [mode]);
 
   const handleSubmit = (data: any) => {

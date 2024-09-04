@@ -2,9 +2,37 @@ import { Button, Dropdown, PasswordInput, TextArea, TextField } from 'ui-library
 import { useForm, Controller } from 'react-hook-form';
 import { Box } from '@mui/material';
 
+export interface IJsonData {
+  fields: Array<{
+    name: string;
+    label: string;
+    type: string;
+    required?: boolean;
+    placeholder?: string;
+    componentType: string;
+    rules?: {
+      required?: string;
+      pattern?: {
+        value: RegExp | string;
+        message: string;
+      };
+      minLength?: {
+        value: number;
+        message: string;
+      };
+      maxLength?: {
+        value: number;
+        message: string;
+      };
+    };
+    helperText?: string;
+    options?: { label: string; value: string }[];
+  }>;
+}
+
 interface IJsonFormProps {
   onSubmit: (data: any) => void;
-  jsonData: any;
+  jsonData: IJsonData;
   submitButtonLabel?: string;
 }
 const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLabel }) => {
@@ -50,13 +78,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLa
                 required={data.required}
                 placeholder={data.placeholder}
                 error={invalid}
-                helperText={
-                  invalid
-                    ? error?.message
-                    : componentType === 'password'
-                      ? 'Must include at least 1 lowercase, 1 uppercase, and 1 special character'
-                      : ''
-                }
+                helperText={invalid ? error?.message : componentType === 'password' ? data.helperText : undefined}
                 {...field}
               />
             )}
@@ -74,7 +96,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLa
                 options={data.options}
                 required={data.required}
                 value={value}
-                onChange={(_e, InputValue) => onChange(InputValue)}
+                onChange={(_e, InputValue) => onChange(InputValue?.value)}
                 error={invalid}
                 helperText={invalid ? error?.message : ''}
               />

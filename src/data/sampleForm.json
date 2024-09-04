@@ -20,7 +20,6 @@
       "name": "password",
       "type": "password",
       "required": true,
-      "error": false,
       "placeholder": "Enter your password",
       "componentType": "password",
       "rules": { "required": "Please enter your password", "minLength": { "value": 8, "message": "Password must be at least 8 characters" } }
@@ -30,7 +29,6 @@
       "type": "dropdown",
       "name": "ageOptions",
       "required": true,
-      "value": "Option 1",
       "componentType": "dropdown",
       "options": [
         { "label": "young", "value": "less than 18" },
