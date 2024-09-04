@@ -21,8 +21,8 @@ export const Wrapper = styled('div')({
   alignItems: 'flex-start',
   padding: 0,
   gap: '4px',
-  width: '100%',
-  maxWidth: '326px'
+  width: '100%'
+  // maxWidth: '326px'
 });
 
 export const StyledTextField = styled((props: ITextFieldProps) => <MuiTextField {...props} />)(({ disabled, readOnly, error }) => ({
@@ -33,7 +33,7 @@ export const StyledTextField = styled((props: ITextFieldProps) => <MuiTextField 
     padding: '8px 8px 8px 4px',
     gap: '8px',
     width: '100%',
-    maxWidth: '268px',
+    // maxWidth: '268px',
     height: '44px',
     background: '#FFFFFF',
     border: error ? '1px solid #ED7857' : disabled || readOnly ? '1px solid #F4F4F4' : '1px solid #DAD7D6',

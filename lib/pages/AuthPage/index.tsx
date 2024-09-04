@@ -7,9 +7,12 @@ export interface IAuthPageProps {
   onSubmit: (data: any) => void;
   fields?: { fields: any[] };
   loading?: boolean;
+  className?: string;
+  header?: string;
+  message?: string;
 }
 
-const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit, fields, loading }) => {
+const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit, fields, loading, className, header, message }) => {
   const [resetPasswordSent] = useState(false);
 
   const jsonData = useMemo(() => {
@@ -25,21 +28,25 @@ const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit, fields, loading })
     return { fields: [] };
   }, [mode, fields]);
 
+  const defaultHeader = useMemo(() => {
+    if (header) return header;
+    if (mode === 'login') return 'Login';
+    if (mode === 'signup') return 'Sign Up';
+    return resetPasswordSent ? 'Reset Password' : 'Forgot Password';
+  }, [header, mode, resetPasswordSent]);
+
+  const defaultMessage = useMemo(() => {
+    if (message) return message;
+    if (mode === 'login') return 'Welcome back!';
+    if (mode === 'signup') return 'Create an account';
+    return resetPasswordSent ? 'Enter your new password' : 'Enter your email address';
+  }, [message, mode, resetPasswordSent]);
+
   return (
-    <div className="border-2 space-y-4">
+    <div className={`border-2 space-y-4 ${className}`}>
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-semibold text-gray-800">
-          {mode === 'login' ? 'Login' : mode === 'signup' ? 'Sign Up' : resetPasswordSent ? 'Reset Password' : 'Forgot Password'}
-        </h2>
-        <p className="text-gray-600">
-          {mode === 'login'
-            ? 'Welcome back!'
-            : mode === 'signup'
-              ? 'Create an account'
-              : resetPasswordSent
-                ? 'Enter your new password'
-                : 'Enter your email address'}
-        </p>
+        <h2 className="text-2xl font-semibold text-gray-800">{defaultHeader}</h2>
+        <p className="text-gray-600">{defaultMessage}</p>
       </div>
       <JsonForm
         loading={loading}
