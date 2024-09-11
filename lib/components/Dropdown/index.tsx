@@ -17,7 +17,7 @@ interface IDropdownProps extends Omit<AutocompleteProps<OptionType, false, false
   label?: string;
   isSelect?: boolean;
   required?: boolean;
-  value?: string | null;
+  value?: string | number | null;
   onChange?: (event: React.SyntheticEvent, value: string | number | null) => void;
 }
 

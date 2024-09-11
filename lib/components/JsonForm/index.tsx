@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Dropdown, PasswordInput, TextArea, TextField } from 'ui-library';
+import { Button, Checkbox, Dropdown, PasswordInput, TextArea, TextField } from 'ui-library';
 import { useForm, Controller } from 'react-hook-form';
 import { Box } from '@mui/material';
 
@@ -44,10 +44,16 @@ interface IJsonFormProps {
   submitButtonLabel?: string;
   loading?: boolean;
   submitButtonProps?: any; // Additional props for the submit button
+  initialValues?: Record<string, any>; // Added initialValues prop
 }
 
-const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLabel, loading, submitButtonProps }) => {
-  const { handleSubmit, control, watch } = useForm();
+const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLabel, loading, submitButtonProps, initialValues = {} }) => {
+  const { handleSubmit, control, watch } = useForm({ defaultValues: initialValues }); // Set initial values here
+
+  const handleFormSubmit = (data: any) => {
+    console.log('Form data submitted:', data);
+    onSubmit(data);
+  };
 
   const renderElement = (data: any) => {
     const customStyles = data.styles || {};
@@ -154,6 +160,26 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLa
             )}
           />
         );
+      case 'checkbox':
+        return (
+          <Controller
+            name={data.name}
+            control={control}
+            rules={data.rules}
+            render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
+              <Box style={{ ...gridStyles, ...customStyles }}>
+                <Checkbox
+                  label={data.label}
+                  checked={!!value}
+                  onChange={(e) => onChange(e.target.checked)}
+                  error={invalid}
+                  helperText={invalid ? error?.message : ''}
+                  {...additionalProps}
+                />
+              </Box>
+            )}
+          />
+        );
       case 'textArea':
         return (
           <Controller
@@ -181,7 +207,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLa
               type="submit"
               className="my-3 w-full"
               loading={loading}
-              {...additionalProps} // Apply additional props
+              {...submitButtonProps} // Apply additional props
             >
               {data.label}
             </Button>
@@ -195,7 +221,7 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLa
   return (
     <Box
       component={'form'}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(12, 1fr)',

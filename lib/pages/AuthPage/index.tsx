@@ -10,9 +10,19 @@ export interface IAuthPageProps {
   className?: string;
   header?: string;
   message?: string;
+  initialValues?: Record<string, any>; // Added initialValues prop
 }
 
-const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit, fields, loading, className, header, message }) => {
+const AuthPage: React.FC<IAuthPageProps> = ({
+  mode,
+  onSubmit,
+  fields,
+  loading,
+  className,
+  header,
+  message,
+  initialValues = {} // Default to empty object if not provided
+}) => {
   const [resetPasswordSent] = useState(false);
 
   const jsonData = useMemo(() => {
@@ -53,6 +63,7 @@ const AuthPage: React.FC<IAuthPageProps> = ({ mode, onSubmit, fields, loading, c
         onSubmit={onSubmit}
         jsonData={jsonData}
         submitButtonLabel={mode === 'login' ? 'Login' : mode === 'signup' ? 'Sign Up' : resetPasswordSent ? 'Reset Password' : 'Send Reset Link'}
+        initialValues={initialValues} // Pass initialValues to JsonForm
       />
     </div>
   );
