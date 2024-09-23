@@ -38,7 +38,7 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({ onChange, error = false,
   };
 
   return (
-    <FormControl error={error}>
+    <FormControl error={error} fullWidth>
       {label && <span className="font-base text-sm mb-1">{label}</span>}
       <Box sx={{ position: 'relative' }}>
         <TextField
@@ -48,6 +48,7 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({ onChange, error = false,
           sx={{ ...defaultSx, ...sx }}
           onChange={handleChange}
           disabled={disabled}
+          fullWidth
           endIcon={
             showPassword ? (
               <IconButton onClick={togglePasswordVisibility} edge="end">

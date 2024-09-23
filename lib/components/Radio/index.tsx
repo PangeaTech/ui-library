@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormControl, FormLabel, RadioGroup as MuiRadioGroup, FormControlLabel, Radio, RadioProps } from '@mui/material';
+import { FormLabel, RadioGroup as MuiRadioGroup, Radio, RadioProps } from '@mui/material';
 
 export interface RadioOption {
   label: string;
@@ -11,23 +11,30 @@ export interface IRadioGroupProps {
   options: RadioOption[];
   value: string;
   onChange: (value: string) => void;
+  row?: boolean; // Add row prop to control horizontal/vertical layout
   RadioProps?: Partial<RadioProps>;
+  className?: string;
 }
 
-const RadioGroup: React.FC<IRadioGroupProps> = ({ label, options, value, onChange, RadioProps }) => {
+const RadioGroup: React.FC<IRadioGroupProps> = ({ label, options, value, onChange, row = false, RadioProps, className }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
 
   return (
-    <FormControl component="fieldset">
+    <>
       <FormLabel component="legend">{label}</FormLabel>
-      <MuiRadioGroup aria-label={label} name={label} value={value} onChange={handleChange}>
-        {options.map((option, index) => (
-          <FormControlLabel key={index} value={option.value} control={<Radio {...RadioProps} />} label={option.label} />
-        ))}
+      <MuiRadioGroup row={row} aria-label={label} name={label} value={value} onChange={handleChange} className={className}>
+        <div className="flex justify-center items-center">
+          {options.map((option) => (
+            <>
+              <Radio {...RadioProps} value={option.value} />
+              <FormLabel>{option.label}</FormLabel>
+            </>
+          ))}
+        </div>
       </MuiRadioGroup>
-    </FormControl>
+    </>
   );
 };
 

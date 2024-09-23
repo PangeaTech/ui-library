@@ -261,7 +261,7 @@ const App: React.FC = () => {
       </div>
       <Button onClick={toggleFlag}>{flag ? 'Disable' : 'Enable'} Inputs</Button>
       <Switch label="On" checked={flag} onChange={toggleFlag} switchBgColor="" disabled={false} value={flag} isLeftLabel={true} leftlabel="Off" />
-      <div className="App w-80 px-12 mx-auto border-2 bg-slate-100">
+      <div className="App w-[500px] px-12 mx-auto border-2 bg-slate-100">
         <h1 className="font-sans text-3xl text-center">Json Form example</h1>
         <JsonForm onSubmit={(data) => console.log('submitted', data)} jsonData={jsonData} />
       </div>

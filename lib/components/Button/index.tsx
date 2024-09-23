@@ -9,7 +9,10 @@ interface IButtonProps extends ButtonProps {
   fullWidth?: boolean;
   disabled?: boolean;
   loading?: boolean;
+  onclick?: () => void;
   children?: ReactNode;
+  className?: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, data?: any) => void;
 }
 
 const LoadingSpinner = styled(CircularProgress)(({ theme }) => ({
@@ -23,11 +26,14 @@ const Button: React.FC<IButtonProps> = ({
   fullWidth = false,
   disabled = false,
   loading = false,
+  onclick,
   children,
+  className,
+  onClick,
   ...rest
 }) => {
   return (
-    <MuiButton variant={variant} color={color} fullWidth={fullWidth} disabled={disabled || loading} {...rest}>
+    <MuiButton className={className} variant={variant} color={color} fullWidth={fullWidth} disabled={disabled || loading} onClick={onClick} {...rest}>
       {loading && <LoadingSpinner size={24} />}
       <span style={{ visibility: loading ? 'hidden' : 'visible' }}>{children}</span>
     </MuiButton>
