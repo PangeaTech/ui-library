@@ -1,12 +1,33 @@
 {
   "fields": [
     {
-      "label": "Email",
+      "componentType": "textField",
+      "name": "name",
+      "label": "Full Name",
+      "type": "text",
+      "required": true,
+      "layout": { "row": 1, "colStart": 1, "colSpan": 12 },
+      "styles": { "gridRow": "1", "gridColumn": "span 12" },
+      "rules": { "required": "Please enter your full name" }
+    },
+    {
+      "componentType": "textField",
+      "name": "organizationName",
+      "label": "Organization Name",
+      "type": "text",
+      "required": true,
+      "layout": { "row": 2, "colStart": 1, "colSpan": 12 },
+      "styles": { "gridRow": "2", "gridColumn": "span 12" },
+      "rules": { "required": "Please enter your organization name" }
+    },
+    {
+      "componentType": "textField",
       "name": "email",
+      "label": "Email Address",
       "type": "email",
       "required": true,
-      "placeholder": "Enter your email",
-      "componentType": "textField",
+      "layout": { "row": 3, "colStart": 1, "colSpan": 12 },
+      "styles": { "gridRow": "3", "gridColumn": "span 12" },
       "rules": {
         "required": "Please enter your email",
         "pattern": {
@@ -16,26 +37,60 @@
       }
     },
     {
-      "label": "Password",
+      "componentType": "password",
       "name": "password",
+      "label": "Password",
       "type": "password",
       "required": true,
-      "placeholder": "Enter your password",
-      "componentType": "password",
+      "layout": { "row": 4, "colStart": 1, "colSpan": 12 },
+      "styles": { "gridRow": "4", "gridColumn": "span 12" },
       "rules": { "required": "Please enter your password", "minLength": { "value": 8, "message": "Password must be at least 8 characters" } }
     },
     {
-      "label": "Dropdown",
-      "type": "dropdown",
-      "name": "ageOptions",
-      "required": true,
       "componentType": "dropdown",
+      "name": "countryCode",
+      "label": "Country Code",
       "options": [
-        { "label": "young", "value": "less than 18" },
-        { "label": "Adult", "value": "Adult 18 - 60" },
-        { "label": "Old", "value": "Older than 60" }
+        { "label": "US (+1)", "value": "+1" },
+        { "label": "IN (+91)", "value": "+91" }
       ],
-      "rules": { "required": "Please select your age" }
+      "layout": { "row": 5, "colStart": 1, "colSpan": 4 },
+      "styles": { "gridRow": "5", "gridColumn": "span 4" },
+      "rules": { "required": "Please select your country code" }
+    },
+    {
+      "componentType": "textField",
+      "name": "phoneNumber",
+      "label": "Phone Number",
+      "type": "tel",
+      "required": true,
+      "layout": { "row": 5, "colStart": 5, "colSpan": 8 },
+      "styles": { "gridRow": "5", "gridColumn": "5 / span 8" }
+    },
+    {
+      "componentType": "date",
+      "name": "birthdate",
+      "label": "Date of Birth",
+      "required": true,
+      "layout": { "row": 6, "colStart": 1, "colSpan": 6 },
+      "styles": { "gridRow": "6", "gridColumn": "span 6" },
+      "props": {
+        "minDate": "1900-01-01"
+      },
+      "rules": { "required": "Please enter your date of birth" }
+    },
+    {
+      "componentType": "radio",
+      "name": "clientType",
+      "label": "Client Type",
+      "required": true,
+      "options": [
+        { "label": "Domestic", "value": "domestic" },
+        { "label": "Overseas", "value": "overseas" }
+      ],
+      "layout": { "row": 7, "colStart": 7, "colSpan": 12 },
+      "styles": { "gridRow": "7", "gridColumn": "span 12", "display": "flex", "alignItems": "center" },
+      "rules": { "required": "Please select the type of client" }
     },
     {
       "label": "TextArea",

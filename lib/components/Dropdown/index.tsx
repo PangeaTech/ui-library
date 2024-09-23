@@ -9,7 +9,7 @@ interface OptionType {
   label: string;
 }
 
-interface IDropdownProps extends Partial<AutocompleteProps<OptionType, false, false, false>> {
+interface IDropdownProps extends Omit<AutocompleteProps<OptionType, false, false, false>, 'renderInput' | 'value' | 'onChange'> {
   disabled?: boolean;
   error?: boolean;
   helperText?: string;
@@ -17,8 +17,8 @@ interface IDropdownProps extends Partial<AutocompleteProps<OptionType, false, fa
   label?: string;
   isSelect?: boolean;
   required?: boolean;
-  value?: OptionType | null;
-  onChange?: (event: React.SyntheticEvent, value: OptionType | null) => void;
+  value?: string | number | null;
+  onChange?: (event: React.SyntheticEvent, value: string | number | null) => void;
 }
 
 const Dropdown: React.FC<IDropdownProps> = ({
@@ -32,6 +32,8 @@ const Dropdown: React.FC<IDropdownProps> = ({
   onChange,
   ...props
 }) => {
+  const selectedOption = options.find((option) => option.value === value) || null;
+
   return (
     <Wrapper>
       {label && <span className="font-base text-sm">{label}</span>}
@@ -39,9 +41,13 @@ const Dropdown: React.FC<IDropdownProps> = ({
         {...props}
         disabled={disabled}
         options={options}
-        value={value}
-        // getOptionLabel={(option) => option.label}
-        onChange={onChange}
+        value={selectedOption}
+        onChange={(event, newValue) => {
+          const newValueString = newValue ? newValue.value : null;
+          if (onChange) {
+            onChange(event, newValueString);
+          }
+        }}
         renderInput={(params) => <StyledTextField {...params} error={error} placeholder="Select" />}
         fullWidth
       />

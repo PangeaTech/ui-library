@@ -48,6 +48,7 @@
     ]
   },
   "dependencies": {
+    "@pangeatech/ui-library": "file:pangeatech-ui-library-0.0.6.tgz",
     "jsdom": "^24.1.0"
   },
   "peerDependencies": {
