@@ -55,6 +55,29 @@
       "required": true,
       "layout": { "row": 5, "colStart": 5, "colSpan": 8 },
       "styles": { "gridRow": "5", "gridColumn": "5 / span 8" }
+    },
+    {
+      "componentType": "date",
+      "name": "birthdate",
+      "label": "Date of Birth",
+      "required": true,
+      "layout": { "row": 6, "colStart": 1, "colSpan": 6 },
+      "styles": { "gridRow": "6", "gridColumn": "span 6" },
+      "props": {
+        "minDate": "1900-01-01"
+      }
+    },
+    {
+      "componentType": "radio",
+      "name": "clientType",
+      "label": "Client Type",
+      "required": true,
+      "options": [
+        { "label": "Domestic", "value": "domestic" },
+        { "label": "Overseas", "value": "overseas" }
+      ],
+      "layout": { "row": 7, "colStart": 7, "colSpan": 12 },
+      "styles": { "gridRow": "7", "gridColumn": "span 12", "display": "flex", "alignItems": "center" }
     }
   ]
 }

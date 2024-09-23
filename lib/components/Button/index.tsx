@@ -33,7 +33,7 @@ const Button: React.FC<IButtonProps> = ({
   ...rest
 }) => {
   return (
-    <MuiButton variant={variant} color={color} fullWidth={fullWidth} disabled={disabled || loading} onClick={onClick} {...rest}>
+    <MuiButton className={className} variant={variant} color={color} fullWidth={fullWidth} disabled={disabled || loading} onClick={onClick} {...rest}>
       {loading && <LoadingSpinner size={24} />}
       <span style={{ visibility: loading ? 'hidden' : 'visible' }}>{children}</span>
     </MuiButton>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Checkbox, Dropdown, PasswordInput, TextArea, TextField } from 'ui-library';
+import { Button, Checkbox, Date, Dropdown, PasswordInput, Radio, TextArea, TextField } from 'ui-library';
 import { useForm, Controller } from 'react-hook-form';
 import { Box } from '@mui/material';
 
@@ -49,6 +49,7 @@ interface IJsonFormProps {
 
 const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLabel, loading, submitButtonProps, initialValues = {} }) => {
   const { handleSubmit, control, watch } = useForm({ defaultValues: initialValues }); // Set initial values here
+  console.log(initialValues);
 
   const handleFormSubmit = (data: any) => {
     console.log('Form data submitted:', data);
@@ -194,6 +195,49 @@ const JsonForm: React.FC<IJsonFormProps> = ({ onSubmit, jsonData, submitButtonLa
                   error={invalid}
                   helperText={invalid ? error?.message : ''}
                   fullWidth
+                  {...additionalProps} // Apply additional props
+                />
+              </Box>
+            )}
+          />
+        );
+      case 'radio': // Add a case for rendering the radio button group
+        return (
+          <Controller
+            name={data.name}
+            control={control}
+            rules={data.rules}
+            render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
+              <Box style={{ ...gridStyles, ...customStyles }}>
+                <Radio
+                  row={true}
+                  label={data.label}
+                  options={data.options || []} // Pass the options for the radio buttons
+                  value={value || ''}
+                  onChange={onChange}
+                  RadioProps={additionalProps} // Apply additional props
+                />
+                {invalid && <p style={{ color: 'red' }}>{error?.message}</p>}
+              </Box>
+            )}
+          />
+        );
+      case 'date':
+        return (
+          <Controller
+            name={data.name}
+            control={control}
+            rules={data.rules}
+            render={({ field, fieldState: { invalid, error } }) => (
+              <Box style={{ ...gridStyles, ...customStyles }}>
+                <Date
+                  label={data.label}
+                  value={field.value || ''}
+                  onChange={field.onChange}
+                  minDate={data.props?.minDate}
+                  required={data.required}
+                  error={invalid}
+                  helperText={invalid ? error?.message : ''}
                   {...additionalProps} // Apply additional props
                 />
               </Box>

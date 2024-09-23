@@ -21,7 +21,7 @@ const AuthPage: React.FC<IAuthPageProps> = ({
   className,
   header,
   message,
-  initialValues = {} // Default to empty object if not provided
+  initialValues // Default to empty object if not provided
 }) => {
   const [resetPasswordSent] = useState(false);
 
@@ -53,7 +53,7 @@ const AuthPage: React.FC<IAuthPageProps> = ({
   }, [message, mode, resetPasswordSent]);
 
   return (
-    <div className={`border-2 space-y-4 ${className}`}>
+    <div className={`space-y-4 ${className}`}>
       <div className="text-center mb-6">
         <h2 className="text-2xl font-semibold text-gray-800">{defaultHeader}</h2>
         <p className="text-gray-600">{defaultMessage}</p>
