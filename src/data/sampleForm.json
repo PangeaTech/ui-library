@@ -7,7 +7,8 @@
       "type": "text",
       "required": true,
       "layout": { "row": 1, "colStart": 1, "colSpan": 12 },
-      "styles": { "gridRow": "1", "gridColumn": "span 12" }
+      "styles": { "gridRow": "1", "gridColumn": "span 12" },
+      "rules": { "required": "Please enter your full name" }
     },
     {
       "componentType": "textField",
@@ -16,7 +17,8 @@
       "type": "text",
       "required": true,
       "layout": { "row": 2, "colStart": 1, "colSpan": 12 },
-      "styles": { "gridRow": "2", "gridColumn": "span 12" }
+      "styles": { "gridRow": "2", "gridColumn": "span 12" },
+      "rules": { "required": "Please enter your organization name" }
     },
     {
       "componentType": "textField",
@@ -25,7 +27,14 @@
       "type": "email",
       "required": true,
       "layout": { "row": 3, "colStart": 1, "colSpan": 12 },
-      "styles": { "gridRow": "3", "gridColumn": "span 12" }
+      "styles": { "gridRow": "3", "gridColumn": "span 12" },
+      "rules": {
+        "required": "Please enter your email",
+        "pattern": {
+          "value": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+          "message": "Invalid email address"
+        }
+      }
     },
     {
       "componentType": "password",
@@ -34,7 +43,8 @@
       "type": "password",
       "required": true,
       "layout": { "row": 4, "colStart": 1, "colSpan": 12 },
-      "styles": { "gridRow": "4", "gridColumn": "span 12" }
+      "styles": { "gridRow": "4", "gridColumn": "span 12" },
+      "rules": { "required": "Please enter your password", "minLength": { "value": 8, "message": "Password must be at least 8 characters" } }
     },
     {
       "componentType": "dropdown",
@@ -45,7 +55,8 @@
         { "label": "IN (+91)", "value": "+91" }
       ],
       "layout": { "row": 5, "colStart": 1, "colSpan": 4 },
-      "styles": { "gridRow": "5", "gridColumn": "span 4" }
+      "styles": { "gridRow": "5", "gridColumn": "span 4" },
+      "rules": { "required": "Please select your country code" }
     },
     {
       "componentType": "textField",
@@ -65,7 +76,8 @@
       "styles": { "gridRow": "6", "gridColumn": "span 6" },
       "props": {
         "minDate": "1900-01-01"
-      }
+      },
+      "rules": { "required": "Please enter your date of birth" }
     },
     {
       "componentType": "radio",
@@ -77,7 +89,19 @@
         { "label": "Overseas", "value": "overseas" }
       ],
       "layout": { "row": 7, "colStart": 7, "colSpan": 12 },
-      "styles": { "gridRow": "7", "gridColumn": "span 12", "display": "flex", "alignItems": "center" }
+      "styles": { "gridRow": "7", "gridColumn": "span 12", "display": "flex", "alignItems": "center" },
+      "rules": { "required": "Please select the type of client" }
+    },
+    {
+      "label": "TextArea",
+      "name": "description",
+      "type": "textArea",
+      "componentType": "textArea",
+      "rules": {
+        "required": "Please enter your description",
+        "minLength": { "value": 10, "message": "Description must be at least 10 characters" },
+        "maxLength": { "value": 100, "message": "Description must be less than 100 characters" }
+      }
     }
   ]
 }
