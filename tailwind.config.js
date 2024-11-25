@@ -2,34 +2,21 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './lib/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    /*    // Test and apply default classes first
-  fontSize: {
-      xs: '12pt',
-      sm: '14pt',
-      base: '16pt',
-      md: '18pt',
-      lg: '20pt',
-      xl: '24pt',
-      '2xl': '30pt',
-      '3xl': '36pt',
-      '4xl': '48pt',
-      '5xl': '60pt',
-      '6xl': '72pt',
-    },
-    lineHeight: {
-      xs: '12pt',
-      sm: '14pt',
-      base: '16pt',
-      md: '18pt',
-      lg: '20pt',
-      xl: '24pt',
-      '2xl': '30pt',
-      '3xl': '36pt',
-      '4xl': '40pt',
-      '5xl': '60pt',
-      '6xl': '60pt',
-    }, */
     extend: {
+      animation: {
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+        'slide-in': 'slideIn 0.5s ease-out'
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 }
+        },
+        slideIn: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0)' }
+        }
+      },
       colors: {
         pangea: {
           blue: {
